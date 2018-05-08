@@ -1,0 +1,18 @@
+#+TITLE:Tasks
+
+* TODO General template design
+** TODO Font
+** TODO Margin
+** TODO Navigation (sections)
+* TODO Localisation
+** TODO JS client mechanism
+** DONE Reference mechanism
+** DONE French version
+** DONE English version
+* TODO Sections
+** TODO Home screen
+** TODO Nos services
+** TODO Choisir PE2C
+** TODO Notre valeur ajoutée
+** TODO Qui sommes-nous ?
+** TODO Contact

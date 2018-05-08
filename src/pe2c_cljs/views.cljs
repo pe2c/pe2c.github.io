@@ -1,7 +1,8 @@
 (ns pe2c-cljs.views
   (:require [re-frame.core :as re-frame]
             [pe2c-cljs.subs]
-            [pe2c-cljs.lorem-ipsum :as lorem-ipsum]))
+            [pe2c-cljs.lorem-ipsum :as lorem-ipsum]
+            [pe2c-cljs.locales :refer [t]]))
 
 (defn- collapsible-sections
   []
@@ -27,11 +28,11 @@
                                                 :padding-right 200
                                                 :transition-timing-function "ease-in-out"}
                                                collapsible-style)}
-         [:div.menu-item "Nos services"]
-         [:div.menu-item "Choisir PE2C"]
-         [:div.menu-item "Notre valeur ajoutée"]
-         [:div.menu-item "Qui sommes-nous ?"]
-         [:div.menu-item "Contact"]]))))
+         [:div.menu-item (t :menu-item :offer)]
+         [:div.menu-item (t :menu-item :choose-us)]
+         [:div.menu-item (t :menu-item :added-value)]
+         [:div.menu-item (t :menu-item :who-we-are)]
+         [:div.menu-item (t :menu-item :get-in-touch)]]))))
 
 (defn title
   []
@@ -41,14 +42,8 @@
                  :align-items :center
                  :justify-content :center
                  :color :white}}
-   [:h1 "Partenariat Entreprises Export – Centre Val-de-Loire"]
-   [:h1 "Exporter l'ambition"]])
-
-(defn header
-  [args]
-  [:header
-   [:h2 (:heading/style args) (:heading/text args)]
-   [:div (:sub-heading/style args) (:sub-heading/text args)]])
+   [:h1 (t :title :title)]
+   [:h1 (t :title :sub-title)]])
 
 (defn offer-opportunities
   []
@@ -59,12 +54,10 @@
           :style {:object-fit :contain
                   :width 128
                   :height 128}}]
-   [:h3 "Recherche d'opportunités"]
-   [:p
-    "Une double démarche :"]
-   [:ul
-    [:li "Nous identifions les entreprises du Centre - Val de Loire ayant un potentiel à l'export, et leur proposons de l'exploiter."]
-    [:li "Nous répondons à la demande des entreprises souhaitant initier ou développer leurs démarches export."]]])
+   [:h3 (t :offer :opportunity :heading)]
+   [:p (t :offer :opportunity :text)]
+   [:ul (map (fn [bullet] [:li bullet])
+             (t :offer :opportunity :bullets))]])
 
 (defn offer-network
   []
@@ -75,14 +68,10 @@
           :style {:object-fit :contain
                   :width 128
                   :height 128}}]
-   [:h3 "Recherche de contacts"]
-   [:p
-    "Nous proposons aux chefs d'entreprises intéressés d'identifier des contacts export."]
-   [:p "Après signature d'un mandat de mission :"]
-   [:ul
-    [:li "Nous recherchons des contacts dans les régions et pays cibles."]
-    [:li "Nous confirmons dans ces zones l’intérêt d'importer le produit fabriqué."]
-    [:li "Nous créons le lien entre le chef d'entreprise et les contacts identifiés."]]])
+   [:h3 (t :offer :network :heading)]
+   [:p (t :offer :network :text)]
+   [:ul (map (fn [bullet] [:li bullet])
+             (t :offer :network :bullets))]])
 
 (defn offer-follow-up
   []
@@ -93,12 +82,11 @@
           :style {:object-fit :contain
                   :width 128
                   :height 128}}]
-   [:h3 "Accompagnement"]
-   [:p "A l'issue de la phase précédente et à la demande du chef d'entreprise :"]
-   [:ul
-    [:li "Nous facilitons ses démarches d'exportation,"]
-    [:li "Nous facilitons en coordination avec les chambres consulaires et les organismes de développement économiques locaux, la mise en relation avec les conseils requis"]
-    [:li "L'accompagnement peut aller jusqu'à l'organisation de missions dans les pays visés (exploratoire, salon, prise de contact physique etc.)"]]])
+
+   [:h3 (t :offer :follow-up :heading)]
+   [:p (t :offer :follow-up :text)]
+   [:ul (map (fn [bullet] [:li bullet])
+             (t :offer :follow-up :bullets))]])
 
 (defn offer
   []
@@ -113,8 +101,8 @@
                      :flex-direction :column
                      :flex-wrap :wrap
                      :align-items :center}}
-    [:h2 "Nos services"]
-    [:div "Trois axes d'activité pour intensifier les relations d'export des petites et moyennes entreprises de la région Centre-Val de Loire."]]
+    [:h2 (t :offer :heading)]
+    [:div (t :offer :caption)]]
    [:div {:style {:display :flex
                   :flex-direction :row
                   :flex-wrap :wrap
@@ -126,106 +114,132 @@
 (defn choose-us
   []
   [:section#offer
-   [header {:heading/text "Pourquoi choisir PE2C?"}]
+   [:header {:style {:display :flex
+                     :flex-direction :column
+                     :flex-wrap :wrap
+                     :align-items :center}}
+    [:h2 (t :choose-us :heading)]]
 
-   [:div
-    [:img {:alt ""
-           :src "img/choose-us/action.jpg"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:div
-     [:p "Pour notre action"]
-     [:ul
-      [:li "Pragmatique"]
-      [:li "Pro-active"]
-      [:li "Opérationnelle"]]]]
+   [:div {:style {:display :flex
+                  :flex-direction :row
+                  :flex-wrap :wrap}}
+    [:div {:style {:flex 1
+                   :padding 15
+                   :display :flex
+                   :flex-direction :column
+                   :flex-wrap :wrap}}
+     [:div
+      [:p (t :choose-us :action :catch-line)]
+      [:ul (map (fn [bullet] [:li bullet])
+                (t :choose-us :action :bullets))]]
 
-   [:div
-    [:img {:alt ""
-           :src "img/choose-us/ethos.png"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:p [:span {:style {:font-weight :bold}} "Pour notre éthique"] "fondée sur la notion de service et d'engagement"]]
-
-   [:div
-    [:img {:alt ""
-           :src "img/choose-us/team.jpg"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:p [:span {:style {:font-weight :bold}} "Pour notre équipe forte"] "d'une expérience internationale et multiculturelle de terrain"]]
-
-   [:div
-    [:img {:alt ""
-           :src "img/choose-us/network.png"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:p [:span {:style {:font-weight :bold}} "Pour notre réseau"] "développé au cours de 30 années d'expertise professionnelle"]]])
+     [:p [:span {:style {:font-weight :bold}} (t :choose-us :ethos :catch-line)] (t :choose-us :ethos :text)]]
+    [:div {:style {:flex 1
+                   :padding 15}}
+     "put a picture here"]
+    [:div {:style {:flex 1
+                   :padding 15
+                   :display :flex
+                   :flex-direction :column
+                   :flex-wrap :wrap}}
+     [:p [:span {:style {:font-weight :bold}} (t :choose-us :team :catch-line)] (t :choose-us :team :text)]
+     [:p [:span {:style {:font-weight :bold}} (t :choose-us :network :catch-line)] (t :choose-us :network :text)]]]])
 
 (defn added-value
   []
   [:section#added-value
-   [:img {:alt ""
-          :src "img/added-value/added-value.png"
-          :style {:object-fit :contain
-                  :width 128
-                  :height 128}}]
-   [:div
-    [header {:heading/text "Notre valeur ajoutée"}]
-    [:ol
-     [:li "Un accompagnement personnalisé de votre entreprise vers l'export ;"]
-     [:li "La rencontre de votre richesse économique et de notre expertise à l'international ;"]
-     [:li "Une rémunération au succès ;"]
-     [:li "Une action complémentaire aux dispositifs existants."]]]])
+   [:header {:style {:display :flex
+                     :flex-direction :column
+                     :flex-wrap :wrap
+                     :align-items :center}}
+    [:h2 (t :added-value :heading)]]
+   [:div {:style {:display :flex
+                  :flex-direction :row
+                  :flex-wrap :wrap
+                  :justify-content :center
+                  :align-items :center}}
+    [:img {:alt ""
+           :src "img/added-value/added-value.png"
+           :style {:object-fit :contain
+                   :width "20%"
+                   :height "20%"}}]
+    [:ol (map (fn [bullet] [:li bullet])
+              (t :added-value :bullets))]]])
 
-(defn who-are-we
+(defn who-we-are
   []
-  [:section#who-are-we
-   [header {:heading/text "Une équipe au service de votre ambition"}]
+  [:section#who-we-are
+   [:header {:style {:display :flex
+                     :flex-direction :column
+                     :flex-wrap :wrap
+                     :align-items :center}}
+    [:h2 (t :who-we-are :heading)]]
 
-   [:div
-    [:img {:alt ""
-           :src "img/team/geraud-de-boisset.jpg"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:div "Géraud de Boisset"]
-    [:div "Président, associé"]]
+   [:div {:style {:display :flex
+                  :flex-direction :row
+                  :flex-wrap :wrap
+                  :align-items :center
+                  :justify-content :center}}
+    [:div {:style {:margin 60}}
+     [:img {:alt ""
+            :src "img/team/geraud-de-boisset.jpg"
+            :style {:object-fit :contain
+                    :width 128
+                    :height 128}}]
+     [:div (t :who-we-are :geraud-de-boisset :name)]
+     [:div (t :who-we-are :president-associate)]]
 
-   [:div
-    [:img {:alt ""
-           :src "img/team/arnaud-ladrange.jpg"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:div "Arnaud Ladrange"]
-    [:div "Associé"]]
+    [:div {:style {:margin 60}}
+     [:img {:alt ""
+            :src "img/team/arnaud-ladrange.jpg"
+            :style {:object-fit :contain
+                    :width 128
+                    :height 128}}]
+     [:div (t :who-we-are :arnaud-ladrange :name)]
+     [:div (t :who-we-are :associate)]]
 
-   [:div
-    [:img {:alt ""
-           :src "img/team/pierre-niclot.jpg"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:div "Pierre Niclot"]
-    [:div "Associé"]]
+    [:div {:style {:margin 60}}
+     [:img {:alt ""
+            :src "img/team/pierre-niclot.jpg"
+            :style {:object-fit :contain
+                    :width 128
+                    :height 128}}]
+     [:div (t :who-we-are :pierre-niclot :name)]
+     [:div (t :who-we-are :associate)]]
 
-   [:div
-    [:img {:alt ""
-           :src "img/team/michel-ravet.jpg"
-           :style {:object-fit :contain
-                   :width 128
-                   :height 128}}]
-    [:div "Michel Ravet"]
-    [:div "Associé"]]])
+    [:div {:style {:margin 60}}
+     [:img {:alt ""
+            :src "img/team/michel-ravet.jpg"
+            :style {:object-fit :contain
+                    :width 128
+                    :height 128}}]
+     [:div (t :who-we-are :michel-ravet :name)]
+     [:div (t :who-we-are :associate)]]]
+
+   [:div#bio-geraud-de-boisset
+    (map (fn [paragraph] [:p paragraph])
+         (t :who-we-are :geraud-de-boisset :biography))]
+
+   [:div#bio-arnaud-ladrange
+    (map (fn [paragraph] [:p paragraph])
+         (t :who-we-are :arnaud-ladrange :biography))]
+
+   [:div#bio-pierre-niclot
+    (map (fn [paragraph] [:p paragraph])
+         (t :who-we-are :pierre-niclot :biography))]
+
+   [:div#bio-michel-ravet
+    (map (fn [paragraph] [:p paragraph])
+         (t :who-we-are :michel-ravet :biography))]])
 
 (defn get-in-touch
   []
   [:section#get-in-touch
-   [header {:heading/text "Nous contacter"}]
+   [:header {:style {:display :flex
+                     :flex-direction :column
+                     :flex-wrap :wrap
+                     :align-items :center}}
+    [:h2 (t :get-in-touch :heading)]]
    [:a {:href "mailto:contact@pe2c.com"} "contact@pe2c.com"]])
 
 (defn main-panel []
@@ -241,33 +255,5 @@
    [offer]
    [choose-us]
    [added-value]
-   [who-are-we]
-   [get-in-touch]
-
-   (lorem-ipsum/paragraphs-el 10 [:p])
-
-   [:div {:style {:height 350
-                  :background-color :lightcoral}}
-    [:div {:style {:background-color :yellow
-                   :display :flex
-                   :flex-direction :column
-                   :flex-wrap :wrap
-                   :height "100%"
-
-                   :justify-content :flex-end
-                   :align-items :flex-end
-                   :align-content :flex-end
-
-                   }}
-     [:p {:style {:flex-grow 0
-                  :flex-basis 0
-                  :margin-bottom 0
-                  :background-color :blue}} "a"]
-     [:p {:style {:flex-grow 0
-                  :flex-basis 0
-                  :margin-bottom 0
-                  :background-color :green}} "b"]
-     [:p {:style {:flex-grow 1
-                  :flex-basis 0
-                  :margin-bottom 0
-                  :background-color :violet}} "c"]]]])
+   [who-we-are]
+   [get-in-touch]])
