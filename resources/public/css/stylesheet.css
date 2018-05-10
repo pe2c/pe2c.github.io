@@ -1,9 +1,15 @@
+a {
+  text-decoration: none;
+}
+
 body {
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Open Sans', sans-serif;
+  color: #0068A3;
 }
 
 p, div, li {
@@ -14,26 +20,16 @@ p, div, li {
   font-size: 80px;
 }
 
-#landing-screen {
-  background-color: red;
-  line-height: 50px;
-}
-
 .menu-item {
   margin: 15px;
 }
 
 .menu-item:hover {
-  color: red;
+  color: white;
 }
 
 #collapsible-title {
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-end;
+
 }
 
 div#cover-image {

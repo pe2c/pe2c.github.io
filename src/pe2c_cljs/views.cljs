@@ -1,51 +1,86 @@
 (ns pe2c-cljs.views
   (:require [re-frame.core :as re-frame]
             [pe2c-cljs.subs]
+            [pe2c-cljs.styles :as styles]
             [pe2c-cljs.lorem-ipsum :as lorem-ipsum]
             [pe2c-cljs.locales :refer [t]]
             [goog.object :as object]))
 
-(defn- collapsible-sections
+(def sections-collapsed-height
+  50)
+
+(defn collapsible-sections-pred
+  [{:scroll/keys [y]}]
+  (let [threshold sections-collapsed-height]
+    (if (<= y threshold)
+      :sections/expanded
+      :sections/collapsed)))
+
+(defn- sections
   []
-  (let [collapsible-pred (fn [{:scroll/keys [y]}]
-                           (let [threshold 50]
-                             (if (<= y threshold)
-                               :title/expanded
-                               :title/collapsed)))
-        collapsible-state (re-frame/subscribe [:window/scroll-trigger collapsible-pred])]
+  (let [collapsible-state (re-frame/subscribe [:window/scroll-trigger collapsible-sections-pred])]
     (fn []
       (let [collapsible-style (case @collapsible-state
-                                :title/collapsed {:background-color "#212529"
-                                                  :position :fixed}
-                                :title/expanded {:position :fixed
-                                                 :padding-top 25
-                                                 :padding-bottom 25})]
-        [:div#collapsible-title {:style (merge {:transition-property [:background-color :padding]
+                                :sections/collapsed {:background-color styles/dark-strong
+                                                     :position :fixed
+                                                     :height sections-collapsed-height
+                                                     :visibility :visible}
+                                :sections/expanded {:position :fixed
+                                                    :padding-top 15
+                                                    :padding-bottom 15
+                                                    :visibility :visible})
+            menu-item-color (case @collapsible-state
+                              :sections/collapsed styles/logo-blue-light
+                              :sections/expanded :white)]
+        [:div#collapsible-title {:style (merge {:transition-property [:background-color :padding :visibility]
                                                 :transition-duration "0.4s"
                                                 :transition-delay "0s"
-                                                :color :white
+                                                :z-index 1
                                                 :width "100%"
-                                                :padding-left 200
-                                                :padding-right 200
+                                                :top 0
+                                                :right 0
+                                                :display :flex
+                                                :flex-wrap :wrap
+                                                :flex-direction :row
+                                                :justify-content :center
                                                 :transition-timing-function "ease-in-out"}
                                                collapsible-style)}
-         [:div.menu-item (t :menu-item :offer)]
-         [:div.menu-item (t :menu-item :choose-us)]
-         [:div.menu-item (t :menu-item :added-value)]
-         [:div.menu-item (t :menu-item :who-we-are)]
-         [:div.menu-item (t :menu-item :get-in-touch)]]))))
+         [:a.menu-item {:style {:color menu-item-color} :href "#offer"} (t :menu-item :offer)]
+         [:a.menu-item {:style {:color menu-item-color} :href "#choose-us"} (t :menu-item :choose-us)]
+         [:a.menu-item {:style {:color menu-item-color} :href "#added-value"} (t :menu-item :added-value)]
+         [:a.menu-item {:style {:color menu-item-color} :href "#who-we-are"} (t :menu-item :who-we-are)]
+         [:a.menu-item {:style {:color menu-item-color} :href "#get-in-touch"} (t :menu-item :get-in-touch)]]))))
 
 (defn title
   []
-  [:div#landing-screen {:style {:display :flex
-                                :flex-direction :column
-                                :flex-wrap :wrap
-                                :align-items :center
-                                :justify-content :center
-                                :color :white
-                                :padding "30px 45px"}}
-   [:h1 (t :title :title)]
-   [:h1#landing-screen-sub-title (t :title :sub-title)]])
+  [:div {:style {:display :flex
+                 :flex-direction :row
+                 :flex-wrap :wrap
+                 :align-items :center
+                 :justify-content :center}}
+   [:div#landing-screen {:style {:transition-property [:background-color :padding :visibility]
+                                 :transition-duration "0.4s"
+                                 :transition-delay "0s"
+                                 :display :flex
+                                 :flex-direction :row
+                                 :flex-wrap :wrap
+                                 :align-items :center
+                                 :justify-content :center}}
+    [:img {:alt "Logo of PE2C"
+           :src "img/logos/pe2c.svg"
+           :style {:height 360
+                   :background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 35%,rgba(255,255,255,0.31) 60%,rgba(0,0,0,0) 71%)"}}]
+    [:div {:style {:display :flex
+                   :flex-direction :column
+                   :justify-content :flex-end
+                   :align-items :flex-end
+                   :padding "30px 45px"}}
+     [:h1 {:style {:font-size 28
+                   :background-color :white}}
+      (t :title :title)]
+     [:h1 {:style {:font-size 80
+                   :background-color :white}}
+      (t :title :sub-title)]]]])
 
 (defn offer-opportunities
   []
@@ -97,6 +132,7 @@
                            :flex-wrap :wrap
                            :justify-content :center
                            :padding-left 200
+                           :padding-top 70 ;; so content isn't hidden by 50-px-high banner
                            :text-align :justify
                            :padding-right 200}}
    [:header {:style {:display :flex
@@ -115,7 +151,8 @@
 
 (defn choose-us
   []
-  [:section#offer
+  [:section#choose-us {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
+                               }}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -149,7 +186,8 @@
 
 (defn added-value
   []
-  [:section#added-value
+  [:section#added-value {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
+                                 }}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -185,7 +223,8 @@
 
 (defn who-we-are
   []
-  [:section#who-we-are
+  [:section#who-we-are {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
+                                }}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -210,7 +249,8 @@
 
 (defn get-in-touch
   []
-  [:section#get-in-touch
+  [:section#get-in-touch {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
+                                  }}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -218,37 +258,27 @@
     [:h2 (t :get-in-touch :heading)]]
    [:a {:href "mailto:contact@pe2c.com"} "contact@pe2c.com"]])
 
-(defn parallax
-  [{:keys [parent-el-opts parallax-el-opts] :as opts} & children]
-  (if parent-el-opts
-    [:div parent-el-opts
-     [:div parallax-el-opts
-      children]]
-    [:div parallax-el-opts
-     children]))
-
-
 (defn main-panel []
   [:div
-   [collapsible-sections]
-   [:div {:style {:overflow :hidden}}
-    [:div {:style {:height "100vh"
-                   :position :relative
-                   :top (let [t (:scroll/y @(re-frame/subscribe [:window/scroll]))]
-                          (/ t 2))}}
-     [:div#cover-image {:style {:background-image "url(/img/cover.jpg)"
-                                :background-repeat :no-repeat
-                                :background-attachment :scroll
-                                :background-position :center
-                                :background-size :cover
-                                :width "100vw"
-                                :display :flex
-                                :flex-direction :row
-                                :flex-wrap :wrap
-                                :height "100vh"
-                                :align-items :center
-                                :justify-content :center}}
-      [title]]]]
+   [sections]
+   [:div#cover-image {:style {:background-image "url(/img/cover.jpg)"
+                              :background-repeat :no-repeat
+                              :background-attachment :scroll
+                              :background-position :center
+                              :background-size :cover
+                              :width "100vw"
+                              :height "100vh"
+                              :display :flex
+                              :flex-direction :row
+                              :flex-wrap :wrap
+                              :align-items :center
+                              :justify-content :center
+                              :position :relative
+                              :top 0 #_(let [t (:scroll/y @(re-frame/subscribe [:window/scroll]))]
+                                         ;; Parallax done right (in pure CSS):
+                                         ;; https://keithclark.co.uk/articles/pure-css-parallax-websites/
+                                         (/ t 2))}}
+    [title]]
    [offer]
    [choose-us]
    [added-value]

@@ -1,18 +1,26 @@
 #+TITLE:Tasks
 
 * TODO General template design
-** TODO Font
+** DONE Font
 ** TODO Margin
-** TODO Navigation (sections)
-** TODO logo
+** DONE Navigation (sections)
+*** TODO Bread crumb
+higlight sections when wisible
+** DONE Logo and theming
 A favicon and in landing screen
+** TODO Responsive design
+Use media queries
 * TODO Localisation
 ** TODO JS client mechanism
 ** DONE Reference mechanism
 ** DONE French version
 ** DONE English version
 * TODO Sections
-** TODO Home screen
+** DONE Home screen
+*** TODO Parallax
+- Simple, quiet effect to show some muscles and give the website some
+  professional touch.
+- [[https://keithclark.co.uk/articles/pure-css-parallax-websites/][Single reasonnable way]]
 ** TODO Nos services
 ** TODO Choisir PE2C
 ** TODO Notre valeur ajoutée
