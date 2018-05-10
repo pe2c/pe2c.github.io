@@ -2,7 +2,8 @@
   (:require [re-frame.core :as re-frame]
             [pe2c-cljs.subs]
             [pe2c-cljs.lorem-ipsum :as lorem-ipsum]
-            [pe2c-cljs.locales :refer [t]]))
+            [pe2c-cljs.locales :refer [t]]
+            [goog.object :as object]))
 
 (defn- collapsible-sections
   []
@@ -16,8 +17,7 @@
       (let [collapsible-style (case @collapsible-state
                                 :title/collapsed {:background-color "#212529"
                                                   :position :fixed}
-                                :title/expanded {:opacity 0
-                                                 :position :fixed
+                                :title/expanded {:position :fixed
                                                  :padding-top 25
                                                  :padding-bottom 25})]
         [:div#collapsible-title {:style (merge {:transition-property [:background-color :padding]
@@ -218,30 +218,37 @@
     [:h2 (t :get-in-touch :heading)]]
    [:a {:href "mailto:contact@pe2c.com"} "contact@pe2c.com"]])
 
+(defn parallax
+  [{:keys [parent-el-opts parallax-el-opts] :as opts} & children]
+  (if parent-el-opts
+    [:div parent-el-opts
+     [:div parallax-el-opts
+      children]]
+    [:div parallax-el-opts
+     children]))
+
+
 (defn main-panel []
   [:div
-   [:h1 "LOL"]
-   #_[collapsible-sections]
-   (let [scroll (re-frame/subscribe [:window/scroll])
-         y (:scroll/y @scroll)]
-     [:div {:style {:height "100vh"
-                    :display :flex
-                    :flex-direction :row
-                    :flex-wrap :np-wrap
-                    :align-items :flex-end}}
-      [:div#cover-image {:style {:background-image "url(/img/cover.jpg)"
-                                 :background-repeat :no-repeat
-                                 :background-attachment :scroll
-                                 :background-position :center
-                                 :background-size :cover
-                                 :width "100vw"
-                                 :display :flex
-                                 :flex-direction :row
-                                 :flex-wrap :wrap
-                                 :height (str "calc(100vh - " y "px)")
-                                 :align-items :center
-                                 :justify-content :center}}
-       [title]]])
+   [collapsible-sections]
+   [:div {:style {:overflow :hidden}}
+    [:div {:style {:height "100vh"
+                   :position :relative
+                   :top (let [t (:scroll/y @(re-frame/subscribe [:window/scroll]))]
+                          (/ t 2))}}
+     [:div#cover-image {:style {:background-image "url(/img/cover.jpg)"
+                                :background-repeat :no-repeat
+                                :background-attachment :scroll
+                                :background-position :center
+                                :background-size :cover
+                                :width "100vw"
+                                :display :flex
+                                :flex-direction :row
+                                :flex-wrap :wrap
+                                :height "100vh"
+                                :align-items :center
+                                :justify-content :center}}
+      [title]]]]
    [offer]
    [choose-us]
    [added-value]
