@@ -43,3 +43,8 @@
 
 ;; visible?
 ;; invisible?
+
+(re-frame/reg-sub
+  :displayed-biography
+  (fn [db _]
+    (:displayed-biography db)))

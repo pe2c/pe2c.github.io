@@ -6,3 +6,12 @@
  ::initialize-db
  (fn  [_ _]
    db/default-db))
+
+(re-frame/reg-event-db
+  :toggle-displayed-biography
+  (fn [db [_ member]]
+    (update db
+            :displayed-biography
+            (fn [current]
+              (when-not (= current member)
+                member)))))

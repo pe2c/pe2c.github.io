@@ -4,7 +4,8 @@
             [pe2c-cljs.styles :as styles]
             [pe2c-cljs.lorem-ipsum :as lorem-ipsum]
             [pe2c-cljs.locales :refer [t]]
-            [goog.object :as object]))
+            [goog.object :as object]
+            [clojure.string :as str]))
 
 (def sections-collapsed-height
   50)
@@ -220,8 +221,36 @@
     :entry :pierre-niclot
     :position :associate}
    {:img "img/team/michel-ravet.jpg"
-    :entry :geraud-de-boisset
+    :entry :michel-ravet
     :position :associate}])
+
+(defn member-chip
+  [{:keys [img entry position]}]
+  [:a {:href (when-not (= entry @(re-frame/subscribe [:displayed-biography]))
+               "#member-biography")
+       :style {:margin 60
+               :text-decoration :none
+               :display :flex
+               :flex-direction :column
+               :flex-wrap :wrap
+               :align-items :center
+               :justify-content :center}
+       :on-click (fn [& _]
+                   (re-frame/dispatch [:toggle-displayed-biography entry]))}
+   [:img {:alt ""
+          :src img
+          :style {:object-fit :contain
+                  :width 200
+                  :height 200
+                  :border-radius "50%"
+                  :border (if (= entry @(re-frame/subscribe [:displayed-biography]))
+                            (str "7px solid " styles/logo-blue-strong)
+                            "7px solid #fff")}}]
+   [:div {:style {:font-size 24
+                  :font-weight :bold
+                  :color styles/dark-strong}}
+    (t :who-we-are entry :name)]
+   [:div {:style {:color styles/dark-strong}} (t :who-we-are position)]])
 
 (defn who-we-are
   []
@@ -233,21 +262,29 @@
                      :align-items :center}}
     [:h2 (t :who-we-are :heading)]]
 
-   [:div {:style {:display :flex
-                  :flex-direction :row
-                  :flex-wrap :wrap
-                  :align-items :center
-                  :justify-content :center}}
-    (map (fn [member]
-           [:div {:style {:margin 60}}
-            [:img {:alt ""
-                   :src (:img member)
-                   :style {:object-fit :contain
-                           :width 128
-                           :height 128}}]
-            [:div (t :who-we-are (:entry member) :name)]
-            [:div (t :who-we-are (:position member))]])
-         members)]])
+   (->> members
+        (partition 2)
+        ;; so it's 2 row of 2 members or 4 rows of 1 each but never all members in a row.
+        (map (fn [mm]
+               [:div {:style {:display :flex
+                              :flex-direction :row
+                              :flex-wrap :wrap
+                              :align-items :center
+                              :justify-content :center}}
+                (map member-chip mm)])))
+
+   [:div#member-biography
+    ;; FIXME Ugly hack, so scrolling to biography isn't hidden by 50-px-high banner
+    {:style {:margin-top -150
+             :position :absolute
+             :background-color :lime}}]
+   (when-let [biography-entry @(re-frame/subscribe [:displayed-biography])]
+     [:div {:style {:padding "0 250px"
+                    :font-size 22
+                    :text-align :justify}}
+      [:p (str (t :who-we-are :biography-of) " ") (t :who-we-are biography-entry :name)]
+      (map (fn [a] [:p a])
+           (t :who-we-are biography-entry :biography))])])
 
 (defn get-in-touch
   []
