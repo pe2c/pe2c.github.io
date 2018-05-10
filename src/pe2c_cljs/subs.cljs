@@ -37,8 +37,9 @@
 
 (re-frame/reg-sub
   :window/scroll
-  (fn [db _]
-    (:window/scroll db)))
+  :<- [::internal-window-scroll]
+  (fn [scroll-state]
+    scroll-state))
 
 ;; visible?
 ;; invisible?
