@@ -16,7 +16,8 @@
       (let [collapsible-style (case @collapsible-state
                                 :title/collapsed {:background-color "#212529"
                                                   :position :fixed}
-                                :title/expanded {:position :fixed
+                                :title/expanded {:opacity 0
+                                                 :position :fixed
                                                  :padding-top 25
                                                  :padding-bottom 25})]
         [:div#collapsible-title {:style (merge {:transition-property [:background-color :padding]
@@ -36,14 +37,15 @@
 
 (defn title
   []
-  [:div {:style {:display :flex
-                 :flex-direction :column
-                 :flex-wrap :wrap
-                 :align-items :center
-                 :justify-content :center
-                 :color :white}}
+  [:div#landing-screen {:style {:display :flex
+                                :flex-direction :column
+                                :flex-wrap :wrap
+                                :align-items :center
+                                :justify-content :center
+                                :color :white
+                                :padding "30px 45px"}}
    [:h1 (t :title :title)]
-   [:h1 (t :title :sub-title)]])
+   [:h1#landing-screen-sub-title (t :title :sub-title)]])
 
 (defn offer-opportunities
   []
@@ -166,6 +168,21 @@
     [:ol (map (fn [bullet] [:li bullet])
               (t :added-value :bullets))]]])
 
+(def members
+  ;; TODO better use re-frame db for this
+  [{:img "img/team/geraud-de-boisset.jpg"
+    :entry :geraud-de-boisset
+    :position :president-associate}
+   {:img "img/team/arnaud-ladrange.jpg"
+    :entry :arnaud-ladrange
+    :position :associate}
+   {:img "img/team/pierre-niclot.jpg"
+    :entry :pierre-niclot
+    :position :associate}
+   {:img "img/team/michel-ravet.jpg"
+    :entry :geraud-de-boisset
+    :position :associate}])
+
 (defn who-we-are
   []
   [:section#who-we-are
@@ -180,57 +197,16 @@
                   :flex-wrap :wrap
                   :align-items :center
                   :justify-content :center}}
-    [:div {:style {:margin 60}}
-     [:img {:alt ""
-            :src "img/team/geraud-de-boisset.jpg"
-            :style {:object-fit :contain
-                    :width 128
-                    :height 128}}]
-     [:div (t :who-we-are :geraud-de-boisset :name)]
-     [:div (t :who-we-are :president-associate)]]
-
-    [:div {:style {:margin 60}}
-     [:img {:alt ""
-            :src "img/team/arnaud-ladrange.jpg"
-            :style {:object-fit :contain
-                    :width 128
-                    :height 128}}]
-     [:div (t :who-we-are :arnaud-ladrange :name)]
-     [:div (t :who-we-are :associate)]]
-
-    [:div {:style {:margin 60}}
-     [:img {:alt ""
-            :src "img/team/pierre-niclot.jpg"
-            :style {:object-fit :contain
-                    :width 128
-                    :height 128}}]
-     [:div (t :who-we-are :pierre-niclot :name)]
-     [:div (t :who-we-are :associate)]]
-
-    [:div {:style {:margin 60}}
-     [:img {:alt ""
-            :src "img/team/michel-ravet.jpg"
-            :style {:object-fit :contain
-                    :width 128
-                    :height 128}}]
-     [:div (t :who-we-are :michel-ravet :name)]
-     [:div (t :who-we-are :associate)]]]
-
-   [:div#bio-geraud-de-boisset
-    (map (fn [paragraph] [:p paragraph])
-         (t :who-we-are :geraud-de-boisset :biography))]
-
-   [:div#bio-arnaud-ladrange
-    (map (fn [paragraph] [:p paragraph])
-         (t :who-we-are :arnaud-ladrange :biography))]
-
-   [:div#bio-pierre-niclot
-    (map (fn [paragraph] [:p paragraph])
-         (t :who-we-are :pierre-niclot :biography))]
-
-   [:div#bio-michel-ravet
-    (map (fn [paragraph] [:p paragraph])
-         (t :who-we-are :michel-ravet :biography))]])
+    (map (fn [member]
+           [:div {:style {:margin 60}}
+            [:img {:alt ""
+                   :src (:img member)
+                   :style {:object-fit :contain
+                           :width 128
+                           :height 128}}]
+            [:div (t :who-we-are (:entry member) :name)]
+            [:div (t :who-we-are (:position member))]])
+         members)]])
 
 (defn get-in-touch
   []
@@ -244,14 +220,28 @@
 
 (defn main-panel []
   [:div
-   [collapsible-sections]
-   [:div#cover-image {:style {:display :flex
-                              :flex-direction :row
-                              :flex-wrap :wrap
-                              :align-items :center
-                              :justify-content :center}}
-    [title]]
-
+   [:h1 "LOL"]
+   #_[collapsible-sections]
+   (let [scroll (re-frame/subscribe [:window/scroll])
+         y (:scroll/y @scroll)]
+     [:div {:style {:height "100vh"
+                    :display :flex
+                    :flex-direction :row
+                    :flex-wrap :np-wrap
+                    :align-items :flex-end}}
+      [:div#cover-image {:style {:background-image "url(/img/cover.jpg)"
+                                 :background-repeat :no-repeat
+                                 :background-attachment :scroll
+                                 :background-position :center
+                                 :background-size :cover
+                                 :width "100vw"
+                                 :display :flex
+                                 :flex-direction :row
+                                 :flex-wrap :wrap
+                                 :height (str "calc(100vh - " y "px)")
+                                 :align-items :center
+                                 :justify-content :center}}
+       [title]]])
    [offer]
    [choose-us]
    [added-value]

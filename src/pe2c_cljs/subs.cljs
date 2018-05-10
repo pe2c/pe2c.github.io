@@ -22,15 +22,23 @@
 (defn window-scroll-handler
   [app-db & _]
   (let [event-listener (.addEventListener js/window scroll-event (partial scroll-listener app-db))]
-    (ratom/make-reaction #(do (:window/scroll @app-db {:scroll/x nil :scroll/y nil}))
+    (ratom/make-reaction #(do (:window/scroll @app-db #:scroll{:x nil :y nil}))
       :on-dispose #(.removeEventListener js/window scroll-event event-listener))))
 
 (re-frame/reg-sub-raw
-  :window/scroll
+  ::internal-window-scroll
   window-scroll-handler)
 
 (re-frame/reg-sub
   :window/scroll-trigger
-  :<- [:window/scroll]
+  :<- [::internal-window-scroll]
   (fn [scroll-state [_ trigger]]
     (trigger scroll-state)))
+
+(re-frame/reg-sub
+  :window/scroll
+  (fn [db _]
+    (:window/scroll db)))
+
+;; visible?
+;; invisible?

@@ -1,6 +1,37 @@
 (ns pe2c-cljs.locales
   (:require [clojure.string :as str]))
 
+(defn- prepend-current-to-sub-key
+  [k [k1 v1]]
+  [(flatten [k k1]) v1])
+
+(defn locale-to-tsv
+  "Ease translation by non technical human. You can export this to a spreadsheet.
+  (locale-to-tsv (:fr dictionary))"
+  [locale-dictionary]
+  (->> locale-dictionary
+       (reduce (fn recursive-flatten-locale [acc [k v]]
+                 (cond (map? v)
+                       (->> v
+                            (map (partial prepend-current-to-sub-key k))
+                            (reduce recursive-flatten-locale
+                                    acc))
+
+                       (vector? v)
+                       (->> v
+                            (map-indexed vector)
+                            (map (fn prettify-index-for-human [[k v]]
+                                   [(inc k) v]))
+                            (map (partial prepend-current-to-sub-key k))
+                            (reduce recursive-flatten-locale acc))
+
+                       :default
+                       (conj acc [k v])))
+               [])
+       (reduce (fn [acc [path s]]
+                 (str acc (str/join ", " path) "\t" s "\n"))
+               "")))
+
 (def dictionary
   {:locale/fallback :fr
    :en {}

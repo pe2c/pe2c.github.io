@@ -4,6 +4,8 @@
 ** TODO Font
 ** TODO Margin
 ** TODO Navigation (sections)
+** TODO logo
+A favicon and in landing screen
 * TODO Localisation
 ** TODO JS client mechanism
 ** DONE Reference mechanism
