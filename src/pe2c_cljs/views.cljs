@@ -133,7 +133,8 @@
                            :flex-wrap :wrap
                            :justify-content :center
                            :padding-left 200
-                           :padding-top 70 ;; so content isn't hidden by 50-px-high banner
+                           :padding-top 140 ;; so content isn't hidden by 50-px-high banner
+                           :padding-bottom 140
                            :text-align :justify
                            :padding-right 200}}
    [:header {:style {:display :flex
@@ -152,8 +153,8 @@
 
 (defn choose-us
   []
-  [:section#choose-us {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
-                               }}
+  [:section#choose-us {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
+                               :padding-bottom 140}}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -187,8 +188,8 @@
 
 (defn added-value
   []
-  [:section#added-value {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
-                                 }}
+  [:section#added-value {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
+                                 :padding-bottom 140}}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -224,8 +225,8 @@
 
 (defn who-we-are
   []
-  [:section#who-we-are {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
-                                }}
+  [:section#who-we-are {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
+                                :padding-bottom 140}}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -250,14 +251,27 @@
 
 (defn get-in-touch
   []
-  [:section#get-in-touch {:style {:padding-top 70 ;; so content isn't hidden by 50-px-high banner
-                                  }}
+  [:section#get-in-touch {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
+                                  :padding-bottom 140
+                                  :background-color styles/dark-strong
+                                  :background-image "url(/img/map-image.png)"
+                                  :width "100vw"
+                                  :background-attachment :scroll
+                                  :background-position :center
+                                  :background-size :cover
+                                  :display :flex
+                                  :flex-direction :column
+                                  :flex-wrap :wrap
+                                  :align-items :center
+                                  :justify-content :center}}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
                      :align-items :center}}
-    [:h2 (t :get-in-touch :heading)]]
-   [:a {:href "mailto:contact@pe2c.com"} "contact@pe2c.com"]])
+    [:h2 {:style {:color :white}} (t :get-in-touch :heading)]]
+   [:a {:href "mailto:contact@pe2c.com"
+        :style {:color :white
+                :font-size 42}} "contact@pe2c.com"]])
 
 (defn main-panel []
   [:div

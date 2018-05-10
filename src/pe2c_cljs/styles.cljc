@@ -15,7 +15,7 @@
           :scroll-behavior :smooth}]
   [:h1 :h2 :h3 :h4 {:font-family "'Open Sans', sans-serif"
                     :color logo-blue-strong}]
-  [:h2 {:font-size "32px"}]
+  [:h2 {:font-size "42px"}]
   [:p :div :li {:font-family "'Montserrat', sans-serif"}]
   [:#landing-screen [:#landing-screen-sub-title {:font-size "80px"}]]
   [:.menu-item {:margin "15px"}]
