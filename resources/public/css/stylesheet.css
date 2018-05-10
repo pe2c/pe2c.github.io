@@ -12,6 +12,10 @@ h1, h2, h3, h4 {
   color: #0068A3;
 }
 
+h2 {
+  font-size: 32px;
+}
+
 p, div, li {
   font-family: 'Montserrat', sans-serif;
 }
@@ -34,4 +38,8 @@ p, div, li {
 
 div#cover-image {
 
+}
+
+section:nth-child(2n) {
+  background-color: #80ACD118;
 }

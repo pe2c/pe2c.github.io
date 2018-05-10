@@ -53,7 +53,8 @@
 
 (defn title
   []
-  [:div {:style {:display :flex
+  [:div {:style {:margin-top 150
+                 :display :flex
                  :flex-direction :row
                  :flex-wrap :wrap
                  :align-items :center
@@ -267,7 +268,7 @@
                               :background-position :center
                               :background-size :cover
                               :width "100vw"
-                              :height "100vh"
+                              :min-height "100vh"
                               :display :flex
                               :flex-direction :row
                               :flex-wrap :wrap

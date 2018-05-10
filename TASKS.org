@@ -6,8 +6,11 @@
 ** DONE Navigation (sections)
 *** TODO Bread crumb
 higlight sections when wisible
-** DONE Logo and theming
-A favicon and in landing screen
+** TODO Logo and theming
+*** TODO Logo as favicon
+*** DONE Logo landing screen
+*** DONE Odd and even section colouring
+*** DONE Heading coulour
 ** TODO Responsive design
 Use media queries
 * TODO Localisation
