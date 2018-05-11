@@ -13,6 +13,10 @@ higlight sections when wisible
 *** DONE Heading coulour
 ** TODO Responsive design
 Use media queries
+** TODO Cross-browser
+*** TODO BUG sections don't collapse
+only works in Firefox
+** TODO Typography and language check
 * TODO Localisation
 ** TODO JS client mechanism
 ** DONE Reference mechanism

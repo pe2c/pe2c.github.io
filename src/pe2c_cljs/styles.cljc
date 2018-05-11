@@ -12,6 +12,12 @@
 (def section-padding
   140)
 
+(def section-formatting
+  {:padding-top (str section-padding "px") ;; so content isn't hidden by 50-px-high banner
+   :padding-bottom (str section-padding "px")
+   :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
+   })
+
 (defstyles sheet
            [:a {:text-decoration :none}]
   [:body {:margin 0
@@ -25,7 +31,10 @@
   [:.menu-item:hover {:color :white}]
   [:#collapsible-title {}]
   [:div#cover-image {}]
-  [:section {:padding-top (str section-padding "px") ;; so content isn't hidden by 50-px-high banner
-             :padding-bottom (str section-padding "px")
-             :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)")}]
+  [:section (merge section-formatting
+                   {:display :flex
+                    :flex-direction :column
+                    :flex-wrap :wrap
+                    :align-items :center
+                    :justify-content :center})]
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}])

@@ -129,12 +129,7 @@
 
 (defn offer
   []
-  [:section#offer {:style {:display :flex
-                           :flex-direction :row
-                           :flex-wrap :wrap
-                           :justify-content :center
-                           :padding-left 200
-                           :text-align :justify
+  [:section#offer {:style {:padding-left 200
                            :padding-right 200}}
    [:header {:style {:display :flex
                      :flex-direction :column
@@ -285,15 +280,9 @@
   []
   [:section#get-in-touch {:style {:background-color styles/dark-strong
                                   :background-image "url(/img/map-image.png)"
-                                  :width "100vw"
                                   :background-attachment :scroll
                                   :background-position :center
-                                  :background-size :cover
-                                  :display :flex
-                                  :flex-direction :column
-                                  :flex-wrap :wrap
-                                  :align-items :center
-                                  :justify-content :center}}
+                                  :background-size :cover}}
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -311,7 +300,6 @@
                               :background-attachment :scroll
                               :background-position :center
                               :background-size :cover
-                              :width "100vw"
                               :min-height "100vh"
                               :display :flex
                               :flex-direction :row
