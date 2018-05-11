@@ -1,5 +1,7 @@
 (ns pe2c-cljs.styles
-  (:require-macros [garden.def :refer [defstyles]]))
+  ;; cljc is needed. clj for lein plugin compilation, cljs for var references
+  #?(:clj (:require [garden.def :refer [defstyles]])
+     :cljs (:require-macros [garden.def :refer [defstyles]])))
 
 (def logo-blue-light "#80ACD1")
 (def logo-blue-strong "#0068A3")
@@ -35,4 +37,7 @@
                     :flex-wrap :wrap
                     :align-items :center
                     :justify-content :center})]
-  ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}])
+  ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
+  [:#get-in-touch-link {:color logo-blue-light}]
+  [:#get-in-touch-link:hover {:color logo-blue-strong
+                              :background-color logo-green-light}])
