@@ -1,6 +1,5 @@
 (ns pe2c-cljs.styles
-  #?(:clj (:require [garden.def :refer [defstyles]])
-     :cljs (:require-macros [garden.def :refer [defstyles]])))
+  (:require-macros [garden.def :refer [defstyles]]))
 
 (def logo-blue-light "#80ACD1")
 (def logo-blue-strong "#0068A3")
@@ -18,7 +17,7 @@
    })
 
 (defstyles sheet
-           [:a {:text-decoration :none}]
+  [:a {:text-decoration :none}]
   [:body {:margin 0
           :scroll-behavior :smooth}]
   [:h1 :h2 :h3 :h4 {:font-family "'Open Sans', sans-serif"
