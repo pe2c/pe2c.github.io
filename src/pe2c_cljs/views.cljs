@@ -280,7 +280,7 @@
 (defn get-in-touch
   []
   [:section#get-in-touch {:style {:background-color styles/dark-strong
-                                  :background-image "url(/img/map-image.png)"
+                                  :background-image "url(img/map-image.png)"
                                   :background-attachment :scroll
                                   :background-position :center
                                   :background-size :cover}}
@@ -296,7 +296,7 @@
 (defn main-panel []
   [:div
    [sections]
-   [:div#cover-image {:style {:background-image "url(/img/cover.jpg)"
+   [:div#cover-image {:style {:background-image "url(img/cover.jpg)"
                               :background-repeat :no-repeat
                               :background-attachment :scroll
                               :background-position :center
