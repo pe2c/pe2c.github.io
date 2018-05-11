@@ -13,8 +13,8 @@
                              :window/scroll
                              #:scroll{:x page-x
                                       :y page-y}))
-                  (object/get e "pageX")
-                  (object/get e "pageY")))
+                  (object/get js/window "scrollX")
+                  (object/get js/window "scrollY")))
 
 (defonce ^:const scroll-event
   "scroll")

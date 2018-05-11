@@ -14,7 +14,9 @@ higlight sections when wisible
 ** TODO Responsive design
 Use media queries
 ** TODO Cross-browser
-*** TODO BUG sections don't collapse
+*** TODO BUG Smooth scrolling
+only works in Firefox
+*** DONE BUG sections don't collapse
 only works in Firefox
 ** TODO Typography and language check
 * TODO Localisation
