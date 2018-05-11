@@ -9,6 +9,9 @@
 (def logo-green-strong "#9AC446")
 (def dark-strong "#212529")
 
+(def section-padding
+  140)
+
 (defstyles sheet
            [:a {:text-decoration :none}]
   [:body {:margin 0
@@ -22,4 +25,7 @@
   [:.menu-item:hover {:color :white}]
   [:#collapsible-title {}]
   [:div#cover-image {}]
+  [:section {:padding-top (str section-padding "px") ;; so content isn't hidden by 50-px-high banner
+             :padding-bottom (str section-padding "px")
+             :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)")}]
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}])

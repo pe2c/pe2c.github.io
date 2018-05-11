@@ -134,8 +134,6 @@
                            :flex-wrap :wrap
                            :justify-content :center
                            :padding-left 200
-                           :padding-top 140 ;; so content isn't hidden by 50-px-high banner
-                           :padding-bottom 140
                            :text-align :justify
                            :padding-right 200}}
    [:header {:style {:display :flex
@@ -154,8 +152,7 @@
 
 (defn choose-us
   []
-  [:section#choose-us {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
-                               :padding-bottom 140}}
+  [:section#choose-us
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -189,8 +186,7 @@
 
 (defn added-value
   []
-  [:section#added-value {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
-                                 :padding-bottom 140}}
+  [:section#added-value
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -254,8 +250,7 @@
 
 (defn who-we-are
   []
-  [:section#who-we-are {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
-                                :padding-bottom 140}}
+  [:section#who-we-are
    [:header {:style {:display :flex
                      :flex-direction :column
                      :flex-wrap :wrap
@@ -288,9 +283,7 @@
 
 (defn get-in-touch
   []
-  [:section#get-in-touch {:style {:padding-top 140 ;; so content isn't hidden by 50-px-high banner
-                                  :padding-bottom 140
-                                  :background-color styles/dark-strong
+  [:section#get-in-touch {:style {:background-color styles/dark-strong
                                   :background-image "url(/img/map-image.png)"
                                   :width "100vw"
                                   :background-attachment :scroll
