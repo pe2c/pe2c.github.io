@@ -27,8 +27,8 @@
   [:h2 {:font-size "42px"}]
   [:p :div :li {:font-family "'Montserrat', sans-serif"}]
   [:#landing-screen [:#landing-screen-sub-title {:font-size "80px"}]]
-  [:.menu-item {:margin "15px"}]
-  [:.menu-item:hover {:color :white}]
+  [:.menu-item {:margin "15px"}
+   [:&:hover {:color :white}]]
   [:#collapsible-title {}]
   [:div#cover-image {}]
   [:section (merge section-formatting
@@ -38,6 +38,6 @@
                     :align-items :center
                     :justify-content :center})]
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
-  [:#get-in-touch-link {:color logo-blue-light}]
-  [:#get-in-touch-link:hover {:color logo-blue-strong
-                              :background-color logo-green-light}])
+  [:#get-in-touch-link {:color logo-blue-light}
+   [:&:hover {:color logo-blue-strong
+                               :background-color logo-blue-light}]])
