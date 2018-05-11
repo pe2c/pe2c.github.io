@@ -21,7 +21,7 @@
                      :bullets ["We facilitate the export procedures"
                                "In coordination with institutional actors we facilitate contacts with the necessary advisory bodies"
                                "We can also organize diverse types of missions in the target regions/countries: exploratory mission participation in trade shows meetings with partners…"]}}
- :choose-us {:heading "why choose PE2C?"
+ :choose-us {:heading "Why choose PE2C?"
              :action {:catch-line "For our approach"
                       :bullets ["Pragmatic"
                                 "Pro-active"
