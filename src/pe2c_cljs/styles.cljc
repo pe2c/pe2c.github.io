@@ -1,6 +1,5 @@
 (ns pe2c-cljs.styles
-  #?(:clj
-           (:require [garden.def :refer [defstyles]])
+  #?(:clj (:require [garden.def :refer [defstyles]])
      :cljs (:require-macros [garden.def :refer [defstyles]])))
 
 (def logo-blue-light "#80ACD1")
