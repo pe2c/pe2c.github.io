@@ -18,10 +18,12 @@ Use media queries
 only works in Firefox
 ** TODO Typography and language check
 * TODO Localisation
-** TODO JS client mechanism
+** DONE JS client mechanism
+And it uses compile-time code.
 ** DONE Reference mechanism
 ** DONE French version
-** DONE English version
+** TODO English version
+They will do that.
 * TODO Sections
 ** DONE Home screen
 *** TODO Parallax
