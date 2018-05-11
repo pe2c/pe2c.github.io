@@ -290,9 +290,8 @@
                      :flex-wrap :wrap
                      :align-items :center}}
     [:h2 {:style {:color :white}} (t :get-in-touch :heading)]]
-   [:a {:href "mailto:contact@pe2c.com"
-        :style {:color :white
-                :font-size 42}} "contact@pe2c.com"]])
+   [:a#get-in-touch-link {:href "mailto:contact@pe2c.com"
+                          :style {:font-size 42}} "contact@pe2c.com"]])
 
 (defn main-panel []
   [:div

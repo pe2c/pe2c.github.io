@@ -54,3 +54,12 @@ section {
 section:nth-child(2n) {
   background-color: #80ACD118;
 }
+
+#get-in-touch-link {
+  color: #80ACD1;
+}
+
+#get-in-touch-link:hover {
+  color: #0068A3;
+  background-color: #ECF4D8;
+}
