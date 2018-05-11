@@ -236,7 +236,8 @@
                   :border-radius "50%"
                   :border (if (= entry @(re-frame/subscribe [:displayed-biography]))
                             (str "7px solid " styles/logo-blue-strong)
-                            "7px solid #fff")}}]
+                            "7px solid #fff")
+                  :margin-bottom 15}}]
    [:div {:style {:font-size 24
                   :font-weight :bold
                   :color styles/dark-strong}}

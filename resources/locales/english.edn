@@ -46,8 +46,8 @@
                                 :biography ["Graduated from the Military Academy Saint Cyr Arnaud Ladrange accomplished his operational military career in the Artillery commanding units at all levels from platoon to Regiment in France as well as on overseas operations."
                                             "After graduating from the Staff College in Paris he directed his career towards International Relations alternating positions abroad and in the Ministry of Defense. He more particularly served as Directing Staff at the UK Joint Services Command and Staff College as Military Advisor at the French Representation to NATO as Deputy Director of the Euro-Atlantic Department in the French MoD and lastly as French Military Representative to the EU."
                                             "He is a recognized expert in the Anglo-Saxon world and international organizations."]}
-              :pierre-niclot {:name [:span "Pierre " [:span {:style {:font-variant :small-caps}} "Niclot"]]
-                              :biography nil}
+              :pierre-niclot {:name [:span "Pierre " [:span {:style {:font-variant :small-caps}} "Niclot"]]}
+              :michel-ravet {:name [:span "Michel " [:span {:style {:font-variant :small-caps}} "Ravet"]]}
               :president-associate "Chairman, associate"
               :associate "Associate"
               :biography-of "Biography of"}
