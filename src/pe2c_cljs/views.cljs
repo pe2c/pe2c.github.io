@@ -95,8 +95,8 @@
                   :height 128}}]
    [:h3 (t :offer :opportunity :heading)]
    [:p (t :offer :opportunity :text)]
-   [:ul (map (fn [bullet] [:li bullet])
-             (t :offer :opportunity :bullets))]])
+   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+                    (t :offer :opportunity :bullets)))]])
 
 (defn offer-network
   []
@@ -109,8 +109,8 @@
                   :height 128}}]
    [:h3 (t :offer :network :heading)]
    [:p (t :offer :network :text)]
-   [:ul (map (fn [bullet] [:li bullet])
-             (t :offer :network :bullets))]])
+   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+                    (t :offer :network :bullets)))]])
 
 (defn offer-follow-up
   []
@@ -124,8 +124,8 @@
 
    [:h3 (t :offer :follow-up :heading)]
    [:p (t :offer :follow-up :text)]
-   [:ul (map (fn [bullet] [:li bullet])
-             (t :offer :follow-up :bullets))]])
+   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+                    (t :offer :follow-up :bullets)))]])
 
 (defn offer
   []
@@ -164,8 +164,8 @@
                    :flex-wrap :wrap}}
      [:div
       [:p (t :choose-us :action :catch-line)]
-      [:ul (map (fn [bullet] [:li bullet])
-                (t :choose-us :action :bullets))]]
+      [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+                       (t :choose-us :action :bullets)))]]
 
      [:p [:span {:style {:font-weight :bold}} (t :choose-us :ethos :catch-line)] (t :choose-us :ethos :text)]]
     [:div {:style {:flex 1
@@ -197,8 +197,8 @@
            :style {:object-fit :contain
                    :width "20%"
                    :height "20%"}}]
-    [:ol (map (fn [bullet] [:li bullet])
-              (t :added-value :bullets))]]])
+    [:ol (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+                     (t :added-value :bullets)))]]])
 
 (def members
   ;; TODO better use re-frame db for this
@@ -216,7 +216,7 @@
     :position :associate}])
 
 (defn member-chip
-  [{:keys [img entry position]}]
+  [{:keys [img entry position] :as member}]
   [:a {:href (when-not (= entry @(re-frame/subscribe [:displayed-biography]))
                "#member-biography")
        :style {:margin 60
@@ -256,12 +256,13 @@
         (partition 2)
         ;; so it's 2 row of 2 members or 4 rows of 1 each but never all members in a row.
         (map (fn [mm]
-               [:div {:style {:display :flex
+               ^{:key mm} [:div {:style {:display :flex
                               :flex-direction :row
                               :flex-wrap :wrap
                               :align-items :center
                               :justify-content :center}}
-                (map member-chip mm)])))
+                           (doall (map #(do ^{:key %} [member-chip %]) mm))]))
+        doall)
 
    [:div#member-biography
     ;; FIXME Ugly hack, so scrolling to biography isn't hidden by 50-px-high banner
@@ -273,8 +274,8 @@
                     :font-size 22
                     :text-align :justify}}
       [:p (str (t :who-we-are :biography-of) " ") (t :who-we-are biography-entry :name)]
-      (map (fn [a] [:p a])
-           (t :who-we-are biography-entry :biography))])])
+      (doall (map (fn [a] ^{:key a} [:p a])
+                  (t :who-we-are biography-entry :biography)))])])
 
 (defn get-in-touch
   []
