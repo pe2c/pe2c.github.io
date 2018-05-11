@@ -1,6 +1,7 @@
 (ns pe2c-cljs.locales
   (:require [clojure.string :as str]
-            [goog.object :as object])
+            [goog.object :as object]
+            [cljs.reader :as reader])
   ;; So locales are computed are compilation time
   (:require-macros [pe2c-cljs.locales :as locales]))
 
@@ -46,7 +47,7 @@
 
 (defn- parse-text [text]
   (if (re-matches text-should-be-parsed-regex text)
-    (cljs.reader/read-string (str/replace text "#EDN_PARSE" ""))
+    (reader/read-string (str/replace text "#EDN_PARSE" ""))
     text))
 
 (defn tsv-file-to-locale-dictionaries
