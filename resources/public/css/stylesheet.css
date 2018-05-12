@@ -144,6 +144,18 @@ section {
 
 }
 
+.offer-bullets {
+  min-width: 375px;
+}
+
+@media (max-width: 392px) {
+
+  .offer-bullets {
+    min-width: 150px;
+  }
+
+}
+
 p, div, li {
   font-family: 'Montserrat', sans-serif;
   font-size: 19px;

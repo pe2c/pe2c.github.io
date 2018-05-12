@@ -166,6 +166,12 @@
         [:& {:padding-left (px 10)
              :padding-right (px 10)}])]))
 
+(def offer-rules
+  (let [breakpoint-section-very-small (px 392)]
+    [:.offer-bullets {:min-width (px (* 25 length-unit))}
+     (at-media {:max-width breakpoint-section-very-small}
+               [:& {:min-width (px 150)}])]))
+
 (defstyles sheet
   [:a {:text-decoration :none}]
   [:body {:margin 0
@@ -177,6 +183,7 @@
 
   title-rules
   general-section-rules
+  offer-rules
  
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]
