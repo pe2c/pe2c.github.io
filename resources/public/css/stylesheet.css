@@ -214,13 +214,22 @@ section {
 }
 
 .offer-bullets {
-  min-width: 375px;
+  min-width: 300px;
 }
 
 @media (max-width: 392px) {
 
   .offer-bullets {
     min-width: 150px;
+  }
+
+}
+
+@media (min-width: 858px) {
+
+  #added-value {
+    padding-left: 45.0px;
+    padding-right: 45.0px;
   }
 
 }
@@ -250,8 +259,17 @@ section {
 @media (max-width: 388px) {
 
   #added-value-img {
-    width: 80%;
-    height: 80%;
+    width: 200px;
+    height: 200px;
+  }
+
+}
+
+@media (min-width: 392px) and (max-width: 1148px) {
+
+  #who-we-are {
+    padding-left: 45.0px;
+    padding-right: 45.0px;
   }
 
 }

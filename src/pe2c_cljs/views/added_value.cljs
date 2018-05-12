@@ -5,11 +5,7 @@
 
 (defn section
   [id]
-  [:section {:id id
-             :style {;; this section is rather empty, it's not a
-                     ;; problem to reduce its padding.
-                     :padding-left (* 0.5 styles/section-padding)
-                     :padding-right (* 0.5 styles/section-padding)}}
+  [:section {:id id}
    [:header {:style styles/flex-center}
     [:h2 (t :added-value :heading)]]
    [:div {:style (assoc styles/flex-center
