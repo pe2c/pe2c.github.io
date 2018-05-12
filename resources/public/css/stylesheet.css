@@ -26,16 +26,16 @@ p, div, li {
 }
 
 section {
-  padding-bottom: 150px;
+  padding-bottom: 90px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  min-height: calc(100vh - 150px - 150px);
+  min-height: calc(100vh - 90px - 90px);
   padding-right: 200px;
   display: flex;
   padding-left: 200px;
-  padding-top: 150px;
+  padding-top: 90px;
 }
 
 section:nth-child(2n) {

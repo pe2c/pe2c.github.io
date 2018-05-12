@@ -11,7 +11,7 @@
           :style styles/offer-picture}]
    [:h3 (t :offer :opportunity :heading)]
    [:p (t :offer :opportunity :text)]
-   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li {:style {:min-width (* 19 styles/length-unit)}} bullet])
                     (t :offer :opportunity :bullets)))]])
 
 (defn network
@@ -22,7 +22,7 @@
           :style styles/offer-picture}]
    [:h3 (t :offer :network :heading)]
    [:p (t :offer :network :text)]
-   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li {:style {:min-width (* 19 styles/length-unit)}} bullet])
                     (t :offer :network :bullets)))]])
 
 (defn follow-up
@@ -34,7 +34,7 @@
 
    [:h3 (t :offer :follow-up :heading)]
    [:p (t :offer :follow-up :text)]
-   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+   [:ul (doall (map (fn [bullet] ^{:key bullet} [:li {:style {:min-width (* 19 styles/length-unit)}} bullet])
                     (t :offer :follow-up :bullets)))]])
 
 (defn section

@@ -16,7 +16,10 @@
 (def medium-screen-width "For tablets and small desktops" (px 1440))
 (def small-screen-width "For constrained layout, e.g. mobile phones" (px 1440))
 
-(def length-unit 15)
+(def length-unit
+  "Basic length reference. Express stuff in relation to this so you
+  don't have complete magic numbers. "
+  15)
 
 (def section-collapsed-height
   (* 3 length-unit))
@@ -26,8 +29,8 @@
    :height section-collapsed-height})
 
 (def section-expanded
-  {:padding-top 15
-   :padding-bottom 15})
+  {:padding-top length-unit
+   :padding-bottom length-unit})
 
 (def section-base
   {:transition-property [:background-color :padding :visibility]
@@ -58,15 +61,15 @@
 
 (def padded-item
   {:flex 1
-   :padding 15})
+   :padding length-unit})
 
 (def offer-picture
   {:object-fit :contain
-   :width 128
-   :height 128})
+   :width "100%"
+   :height (* 9 length-unit)})
 
 (def added-value-list-height
-  "50vh")
+  300)
 
 (def cover-background-image
   {:background-image "url(img/cover.jpg)"
@@ -100,14 +103,16 @@
 (def text-font-size 19)
 (def small-text-font-size 14)
 
+(def section-padding
+  (* 6 length-unit))
+
 (def section-formatting
-  (let [section-padding (* 10 length-unit)]
-    {:padding-top (px section-padding) ;; so content isn't hidden by 50-px-high banner
-     :padding-bottom (px section-padding)
-     :padding-left (px 200)
-     :padding-right (px 200)
-     :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
-     }))
+  {:padding-top (px section-padding) ;; so content isn't hidden by 50-px-high banner
+   :padding-bottom (px section-padding)
+   :padding-left (px 200)
+   :padding-right (px 200)
+   :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
+   })
 
 (defstyles sheet
   [:a {:text-decoration :none}]
