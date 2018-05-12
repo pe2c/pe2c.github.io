@@ -2,20 +2,22 @@
 
 * TODO General template design
 ** DONE Font
-** TODO Margin
+** DONE Margin
 ** DONE Navigation (sections)
 *** TODO Bread crumb
 higlight sections when wisible
-** TODO Logo and theming
-*** TODO Logo as favicon
+** DONE Logo and theming
+*** DONE Logo as favicon
 *** DONE Logo landing screen
 *** DONE Odd and even section colouring
 *** DONE Heading coulour
-** TODO Responsive design
+** DONE Responsive design
 Use media queries
-** TODO Cross-browser
-*** TODO BUG Smooth scrolling
+** DONE Cross-browser
+*** DONE BUG Smooth scrolling
 only works in Firefox
+
+Resolution: Chrome doesn't enable it by default.
 *** DONE BUG sections don't collapse
 only works in Firefox
 ** TODO Typography and language check
@@ -26,15 +28,18 @@ And it uses compile-time code.
 ** DONE French version
 ** TODO English version
 They will do that.
+** TODO HTML tag with correct language
 * TODO Sections
-** DONE Home screen
-*** TODO Parallax
+** TODO Home screen
+*** Parallax
 - Simple, quiet effect to show some muscles and give the website some
   professional touch.
 - [[https://keithclark.co.uk/articles/pure-css-parallax-websites/][Single reasonnable way]]
-** TODO Nos services
+*** TODO Hover colours
+** DONE Nos services
 ** TODO Choisir PE2C
-** TODO Notre valeur ajoutée
+Add min width and padding for some media
+** DONE Notre valeur ajoutée
 ** DONE Qui sommes-nous ?
 ** DONE Contact
 ** TODO Footer
