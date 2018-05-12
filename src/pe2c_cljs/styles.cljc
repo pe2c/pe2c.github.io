@@ -225,15 +225,15 @@
                       :margin (px 60)
                       :text-decoration :none
                       :flex-direction :column)
-      (at-media {:max-width breakpoint-small}
-                [:& {:margin-left (px 0)
-                     :margin-right (px 0)}])]
+       (at-media {:max-width breakpoint-small}
+         [:& {:margin-left (px 0)
+              :margin-right (px 0)}])]
      [:.member-chip-face {:object-fit :contain
                           :width (px (* 16 length-unit))
                           :height (px (* 16 length-unit))}
       (at-media {:max-width breakpoint-small}
-                [:& {:width "50vw"
-                     :height "50vw"}])]
+        [:& {:width "50vw"
+             :height "50vw"}])]
      [:#member-biography {:position :relative
                           :top "-20vh"
                           :left (px 0)
@@ -245,9 +245,9 @@
     [[:#get-in-touch {;; this section is rather empty, it's not a problem to reduce its padding.
                       :padding-left 0
                       :padding-right 0}]
-     [:#get-in-touch-link {:font-size large-text-font-size}
-      (at-media {:max-width breakpoint-medium}
-                [:& {:font-size text-font-size}])]]))
+     [:#get-in-touch-link {:font-size (px large-text-font-size)}
+       (at-media {:max-width breakpoint-medium}
+         [:& {:font-size (px text-font-size)}])]]))
 
 (defstyles sheet
   [:a {:text-decoration :none}]
