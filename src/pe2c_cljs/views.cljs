@@ -11,19 +11,19 @@
             [re-frame.core :as re-frame]))
 
 (def sections
-  [#_#:section{:href "offer"
+  [#:section{:href "offer"
              :panel-title (t :menu-item :offer)
              :view offer/section}
-   #_#:section{:href "choose-us"
+   #:section{:href "choose-us"
              :panel-title (t :menu-item :choose-us)
              :view choose-us/section}
-   #_#:section{:href "added-value"
+   #:section{:href "added-value"
              :panel-title (t :menu-item :added-value)
              :view added-value/section}
    #:section{:href "who-we-are"
              :panel-title (t :menu-item :who-we-are)
              :view who-we-are/section}
-   #_#:section{:href "get-in-touch"
+   #:section{:href "get-in-touch"
              :panel-title (t :menu-item :get-in-touch)
              :view get-in-touch/section}])
 
@@ -69,8 +69,8 @@
 (defn main-panel
   []
   [:div
-   #_[sections-panel]
-   #_[:div {:style (merge styles/flex-center
+   [sections-panel]
+   [:div {:style (merge styles/flex-center
                         styles/cover-background-image
                         {:min-height "100vh"}
                         ;; Parallax done right (in pure CSS):
