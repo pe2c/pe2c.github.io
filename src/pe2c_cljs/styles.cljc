@@ -227,6 +227,14 @@
                           :margin-bottom (px -20)
                           :height (px 20)}]]))
 
+(def get-in-touch-rules
+  (let [breakpoint-medium (px 512)]
+    [[:#get-in-touch {;; this section is rather empty, it's not a problem to reduce its padding.
+                      :padding-left 0
+                      :padding-right 0}]
+     [:#get-in-touch-link {:font-size large-text-font-size}
+      (at-media {:max-width breakpoint-medium}
+                [:& {:font-size text-font-size}])]]))
 
 (defstyles sheet
   [:a {:text-decoration :none}]
@@ -243,6 +251,7 @@
   offer-rules
   added-value-rules
   who-we-are-rules
+  get-in-touch-rules
 
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]

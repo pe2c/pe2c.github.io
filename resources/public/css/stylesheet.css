@@ -314,8 +314,23 @@ section {
   left: 0px;
   margin-bottom: -20px;
   height: 20px;
-  width: 20px;
-  background-color: lime;
+}
+
+#get-in-touch {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#get-in-touch-link {
+  font-size: 42;
+}
+
+@media (max-width: 512px) {
+
+  #get-in-touch-link {
+    font-size: 19;
+  }
+
 }
 
 p, div, li {
