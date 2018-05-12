@@ -45,7 +45,7 @@
    :transition-timing-function "ease-in-out"})
 
 (def section-panel-rules
-  (let [breakpoint-medium 704]
+  (let [breakpoint-medium 848]
     [[:#sections-panel (merge section-base
                               flex-center)
        (at-media {:max-width (px breakpoint-medium)}
