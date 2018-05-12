@@ -225,9 +225,8 @@
                           :top "-20vh"
                           :left (px 0)
                           :margin-bottom (px -20)
-                          :height (px 20)
-                          :width (px 20)
-                          :background-color :lime}]]))
+                          :height (px 20)}]]))
+
 
 (defstyles sheet
   [:a {:text-decoration :none}]
