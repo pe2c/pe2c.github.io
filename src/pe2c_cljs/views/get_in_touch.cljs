@@ -10,5 +10,6 @@
    [:header {:style styles/flex-center}
     [:h2 {:style {:color :white}} (t :get-in-touch :heading)]]
    [:a#get-in-touch-link {:href "mailto:contact@pe2c.com"
-                          :style {:font-size 42}} "contact@pe2c.com"]])
+                          :style {:font-size styles/large-text-font-size}}
+    "contact@pe2c.com"]])
 

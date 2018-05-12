@@ -5,8 +5,7 @@
 
 (defn opportunities
   []
-  [:div {:style {:flex 1
-                 :padding 15}}
+  [:div {:style styles/padded-item}
    [:img {:alt ""
           :src "img/offer/recherche.png"
           :style styles/offer-picture}]
@@ -17,8 +16,7 @@
 
 (defn network
   []
-  [:div {:style {:flex 1
-                 :padding 15}}
+  [:div {:style styles/padded-item}
    [:img {:alt ""
           :src "img/offer/teamup.png"
           :style styles/offer-picture}]
@@ -29,8 +27,7 @@
 
 (defn follow-up
   []
-  [:div {:style {:flex 1
-                 :padding 15}}
+  [:div {:style styles/padded-item}
    [:img {:alt ""
           :src "img/offer/network.png"
           :style styles/offer-picture}]
@@ -42,9 +39,7 @@
 
 (defn section
   [id]
-  [:section {:id id
-             :style {:padding-left 200
-                     :padding-right 200}}
+  [:section {:id id}
    [:header {:style (assoc styles/flex-center
                       :flex-direction :column)}
     [:h2 (t :offer :heading)]

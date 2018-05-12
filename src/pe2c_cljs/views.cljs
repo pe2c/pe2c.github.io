@@ -11,19 +11,19 @@
             [re-frame.core :as re-frame]))
 
 (def sections
-  [#:section{:href "#offer"
+  [#:section{:href "offer"
              :panel-title (t :menu-item :offer)
              :view offer/section}
-   #:section{:href "#choose-us"
+   #:section{:href "choose-us"
              :panel-title (t :menu-item :choose-us)
              :view choose-us/section}
-   #:section{:href "#added-value"
+   #:section{:href "added-value"
              :panel-title (t :menu-item :added-value)
              :view added-value/section}
-   #:section{:href "#who-we-are"
+   #:section{:href "who-we-are"
              :panel-title (t :menu-item :who-we-are)
              :view who-we-are/section}
-   #:section{:href "#get-in-touch"
+   #:section{:href "get-in-touch"
              :panel-title (t :menu-item :get-in-touch)
              :view get-in-touch/section}])
 
@@ -49,7 +49,7 @@
             ^{:key section}
             [:a.menu-item {:style {:color menu-item-color
                                    :margin 15}
-                           :href href}
+                           :href (str "#" href)}
              panel-title])
           sections)]))
 
@@ -86,6 +86,9 @@
                         ;; https://keithclark.co.uk/articles/pure-css-parallax-websites/
                         )}
     [title]]
-   (doall (map (fn [{:section/keys [href view]}]
-                 ^{:key view} [view href])
-               sections))])
+   [:div {:style (assoc styles/flex-center
+                   :flex-direction :column
+                   :align-items :stretch)}
+    (doall (map (fn [{:section/keys [href view]}]
+                  ^{:key view} [view href])
+                sections))]])

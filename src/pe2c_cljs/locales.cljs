@@ -93,6 +93,8 @@
   [& path]
   ;; TODO: doesn't handle [] case, only nil
   (or (get-in dictionary (cons *locale* path))
-      (do (.warn js/console (clj->js path) "not found in" *locale* ", fallback on" locale-fallback) (get-in dictionary (cons locale-fallback path)))
-      (do (.warn js/console (clj->js path) "not found in fallback" locale-fallback ", not found at all") (str "not found: " (str/join "
+      (do (.warn js/console (clj->js path) (str "not found in " *locale* ", fallback on " locale-fallback))
+          (get-in dictionary (cons locale-fallback path)))
+      (do (.warn js/console (clj->js path) (str "not found in fallback" locale-fallback ", not found at all"))
+          (str "not found: " (str/join "
 " path)))))

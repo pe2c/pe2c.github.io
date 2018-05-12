@@ -16,17 +16,10 @@
 (def medium-screen-width "For tablets and small desktops" (px 1440))
 (def small-screen-width "For constrained layout, e.g. mobile phones" (px 1440))
 
-(def section-padding
-  140)
+(def length-unit 15)
 
 (def section-collapsed-height
-  50)
-
-(def section-formatting
-  {:padding-top (str section-padding "px") ;; so content isn't hidden by 50-px-high banner
-   :padding-bottom (str section-padding "px")
-   :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
-   })
+  (* 3 length-unit))
 
 (def section-collapsed
   {:background-color dark-strong
@@ -49,7 +42,7 @@
 
 (def title-logo
   {:width 360
-   :background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 35%,rgba(255,255,255,0.31) 60%,rgba(0,0,0,0) 71%)"})
+   :background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.31) 60%, rgba(0,0,0,0) 71%)"})
 
 (def title-transition
   {:transition-property [:background-color :padding :visibility]
@@ -62,6 +55,10 @@
    :flex-wrap :wrap
    :align-items :center
    :justify-content :center})
+
+(def padded-item
+  {:flex 1
+   :padding 15})
 
 (def offer-picture
   {:object-fit :contain
@@ -82,10 +79,32 @@
    :background-position :center
    :background-size :cover})
 
+(defn member-chip-face
+  [displayed?]
+  {:object-fit :contain
+   :width (* 16 length-unit)
+   :height (* 16 length-unit)
+   :margin-bottom length-unit
+   :border-width (/ length-unit 2)
+   :border-radius "50%"
+   :border-style :solid
+   :border-color (if displayed?
+                   logo-blue-strong
+                   :white)})
+
 (def section-heading-font-size 42)
 (def large-text-font-size 42)
-(def text-font-size 42)
-(def small-text-font-size 42)
+(def text-font-size 19)
+(def small-text-font-size 14)
+
+(def section-formatting
+  (let [section-padding (* 10 length-unit)]
+    {:padding-top (px section-padding) ;; so content isn't hidden by 50-px-high banner
+     :padding-bottom (px section-padding)
+     :padding-left (px 200)
+     :padding-right (px 200)
+     :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
+     }))
 
 (defstyles sheet
   [:a {:text-decoration :none}]
@@ -94,14 +113,12 @@
   [:h1 :h2 :h3 :h4 {:font-family "'Open Sans', sans-serif"
                     :color logo-blue-strong}]
   [:h2 {:font-size (px section-heading-font-size)}]
-  [:p :div :li {:font-family "'Montserrat', sans-serif"}]
+  [:p :div :li {:font-family "'Montserrat', sans-serif"
+                :font-size (px text-font-size)}]
   [:.menu-item:hover {:color :white}]
   [:section (merge section-formatting
-                   {:display :flex
-                    :flex-direction :column
-                    :flex-wrap :wrap
-                    :align-items :center
-                    :justify-content :center})]
+                   flex-center
+                   {:flex-direction :column})]
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
   [:#get-in-touch-link {:color logo-blue-light}
    [:&:hover {:color logo-blue-strong
@@ -112,9 +129,11 @@
   ;; for its breakpoints. Of course, I also test in responsive mode to
   ;; make sure it eventually works at the end.
 
-  (at-media {:max-width large-screen-width})
-  (at-media {:max-width medium-screen-width})
-  (at-media {:max-width small-screen-width}))
+  (at-media {:max-width (px large-screen-width)})
+  (at-media {:max-width (px medium-screen-width)}
+            {:background-color :green})
+  (at-media {:max-width (px small-screen-width)}
+            {:background-color :lime}))
 
 
 

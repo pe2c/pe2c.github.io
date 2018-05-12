@@ -17,16 +17,8 @@
                    (re-frame/dispatch [:toggle-displayed-biography entry]))}
    [:img {:alt ""
           :src img
-          :style {:object-fit :contain
-                  :width 200
-                  :height 200
-                  :border-radius "50%"
-                  :border (if (= entry @(re-frame/subscribe [:displayed-biography]))
-                            (str "7px solid " styles/logo-blue-strong)
-                            "7px solid #fff")
-                  :margin-bottom 15}}]
-   [:div {:style {:font-size 24
-                  :font-weight :bold
+          :style (styles/member-chip-face (= entry @(re-frame/subscribe [:displayed-biography])))}]
+   [:div {:style {:font-weight :bold
                   :color styles/dark-strong}}
     (t :who-we-are entry :name)]
    [:div {:style {:color styles/dark-strong}} (t :who-we-are position)]])
@@ -52,9 +44,7 @@
              :position :absolute
              :background-color :lime}}]
    (when-let [biography-entry @(re-frame/subscribe [:displayed-biography])]
-     [:div {:style {:padding "0 250px"
-                    :font-size 22
-                    :text-align :justify}}
+     [:div {:style {:text-align :justify}}
       [:p (str (t :who-we-are :biography-of) " ") (t :who-we-are biography-entry :name)]
       (doall (map (fn [a] ^{:key a} [:p a])
                   (t :who-we-are biography-entry :biography)))])])
