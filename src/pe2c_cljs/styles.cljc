@@ -107,12 +107,15 @@
    :padding-left (px 200)
    :padding-right (px 200)
    :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
-   })
+   :max-width (px 2200)})
 
 ;; Here media queries are content-oriented, not media-oriented. It
 ;; means that breakpoints are defined for each content. Of course, I
 ;; also test in responsive mode to make sure it eventually works at
 ;; the end.
+;; 
+;; Min width test for responsive design: 280px. Max is 2200px (not
+;; sure it's even useful but it was so easy to check I did it).
 
 (def title-responsive-rules
   (let [breakpoint-title-large (px 1268)
@@ -150,6 +153,19 @@
        (at-media {:max-width breakpoint-title-very-small}
          [:& {:margin-top (px 250)}])]]))
 
+(def general-section-rules
+  (let [breakpoint-section-medium (px 776)
+        breakpoint-section-small (px 474)]
+    [:section (merge section-formatting
+                     flex-center
+                     {:flex-direction :column})
+      (at-media {:max-width breakpoint-section-medium}
+        [:& {:padding-left (px 50)
+             :padding-right (px 50)}])
+      (at-media {:max-width breakpoint-section-small}
+        [:& {:padding-left (px 10)
+             :padding-right (px 10)}])]))
+
 (defstyles sheet
   [:a {:text-decoration :none}]
   [:body {:margin 0
@@ -160,13 +176,12 @@
   [:h2 {:font-size (px section-heading-font-size)}]
 
   title-responsive-rules
+  general-section-rules
  
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]
   [:.menu-item:hover {:color :white}]
-  [:section (merge section-formatting
-                   flex-center
-                   {:flex-direction :column})]
+
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
   [:#get-in-touch-link {:color logo-blue-light}
    [:&:hover {:color logo-blue-strong

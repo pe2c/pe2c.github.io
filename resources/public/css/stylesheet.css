@@ -112,17 +112,9 @@ h2 {
 
 }
 
-p, div, li {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 19px;
-}
-
-.menu-item:hover {
-  color: white;
-}
-
 section {
   padding-bottom: 90px;
+  max-width: 2200px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -132,6 +124,33 @@ section {
   display: flex;
   padding-left: 200px;
   padding-top: 90px;
+}
+
+@media (max-width: 776px) {
+
+  section {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+}
+
+@media (max-width: 474px) {
+
+  section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+}
+
+p, div, li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 19px;
+}
+
+.menu-item:hover {
+  color: white;
 }
 
 section:nth-child(2n) {

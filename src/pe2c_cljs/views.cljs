@@ -83,8 +83,8 @@
                         )}
     [title]]
    [:div {:style (assoc styles/flex-center
-                   :flex-direction :column
-                   :align-items :stretch)}
+                   :align-items :stretch
+                   :flex-direction :column)}
     (doall (map (fn [{:section/keys [href view]}]
                   ^{:key view} [view href])
                 sections))]])
