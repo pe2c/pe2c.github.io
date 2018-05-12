@@ -169,8 +169,25 @@
 (def offer-rules
   (let [breakpoint-section-very-small (px 392)]
     [:.offer-bullets {:min-width (px (* 25 length-unit))}
-     (at-media {:max-width breakpoint-section-very-small}
-               [:& {:min-width (px 150)}])]))
+      (at-media {:max-width breakpoint-section-very-small}
+        [:& {:min-width (px 150)}])]))
+
+(def added-value-rules
+  (let [breakpoint-small (px 388)
+        breakpoint-medium (px 858)]
+    [[:#added-value-ol {:height (px added-value-list-height)
+                        :width "50vw"
+                        :display :flex
+                        :flex-direction :column
+                        :justify-content :space-evenly}
+       (at-media {:max-width breakpoint-medium}
+         [:& {:width "100%"}])]
+     [:#added-value-img {:object-fit :contain
+                         :width (px added-value-list-height)
+                         :height (px added-value-list-height)}
+       (at-media {:max-width breakpoint-small}
+         [:& {:width "80%"
+              :height "80%"}])]]))
 
 (defstyles sheet
   [:a {:text-decoration :none}]
@@ -184,7 +201,8 @@
   title-rules
   general-section-rules
   offer-rules
- 
+  added-value-rules
+
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]
   [:.menu-item:hover {:color :white}]

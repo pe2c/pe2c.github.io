@@ -156,6 +156,37 @@ section {
 
 }
 
+#added-value-ol {
+  height: 300px;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 858px) {
+
+  #added-value-ol {
+    width: 100%;
+  }
+
+}
+
+#added-value-img {
+  object-fit: contain;
+  width: 300px;
+  height: 300px;
+}
+
+@media (max-width: 388px) {
+
+  #added-value-img {
+    width: 80%;
+    height: 80%;
+  }
+
+}
+
 p, div, li {
   font-family: 'Montserrat', sans-serif;
   font-size: 19px;

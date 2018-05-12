@@ -14,14 +14,8 @@
     [:h2 (t :added-value :heading)]]
    [:div {:style (assoc styles/flex-center
                    :flex-direction :row-reverse)}
-    [:ol {:style {:height styles/added-value-list-height
-                  :display :flex
-                  :flex-direction :column
-                  :justify-content :space-evenly}}
+    [:ol#added-value-ol
      (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
                  (t :added-value :bullets)))]
-    [:img {:alt ""
-           :src "img/added-value/added-value.png"
-           :style {:object-fit :contain
-                   :width styles/added-value-list-height
-                   :height styles/added-value-list-height}}]]])
+    [:img#added-value-img {:alt ""
+                           :src "img/added-value/added-value.png"}]]])
