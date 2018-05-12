@@ -12,7 +12,11 @@
     [:img {:alt ""
            :src "img/added-value/added-value.png"
            :style {:object-fit :contain
-                   :width "20%"
-                   :height "20%"}}]
-    [:ol (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
-                     (t :added-value :bullets)))]]])
+                   :width styles/added-value-list-height
+                   :height styles/added-value-list-height}}]
+    [:ol {:style {:height styles/added-value-list-height
+                  :display :flex
+                  :flex-direction :column
+                  :justify-content :space-evenly}}
+     (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
+                 (t :added-value :bullets)))]]])

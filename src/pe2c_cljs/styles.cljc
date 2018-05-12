@@ -65,6 +65,9 @@
    :width 128
    :height 128})
 
+(def added-value-list-height
+  "50vh")
+
 (def cover-background-image
   {:background-image "url(img/cover.jpg)"
    :background-repeat :no-repeat
