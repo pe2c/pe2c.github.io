@@ -1,7 +1,7 @@
 {:menu-item {:offer "Our offer"
              :choose-us "Why choose PE2C?"
              :added-value "Our added value"
-             :who-we-are "About us"
+             :who-we-are "Team"
              :get-in-touch "Contact"}
  :title {:title "Partenariat Entreprises Export – Centre Val-de-Loire"
          :sub-title "Export your Ambition"}
