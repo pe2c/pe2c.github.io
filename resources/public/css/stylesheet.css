@@ -16,6 +16,102 @@ h2 {
   font-size: 42px;
 }
 
+#title-name {
+  font-size: 28px;
+  background-color: white;
+}
+
+@media (max-width: 1268px) {
+
+  #title-name {
+    font-size: 25px;
+  }
+
+}
+
+@media (max-width: 1034px) {
+
+  #title-name {
+    font-size: 21px;
+  }
+
+}
+
+#title-motto {
+  font-size: 80px;
+  background-color: white;
+}
+
+@media (max-width: 1268px) {
+
+  #title-motto {
+    font-size: 68px;
+  }
+
+}
+
+@media (max-width: 1034px) {
+
+  #title-motto {
+    font-size: 56px;
+  }
+
+}
+
+#title-logo {
+  height: 360px;
+  width: 360px;
+}
+
+@media (max-width: 1268px) {
+
+  #title-logo {
+    height: 250px;
+    width: 250px;
+  }
+
+}
+
+@media (max-width: 912px) {
+
+  #title-logo {
+    width: 50%;
+    height: 50%;
+    padding-top: 50px;
+  }
+
+}
+
+@media (max-width: 342px) {
+
+  #title-logo {
+    width: 250px;
+    height: 250px;
+    padding-top: 50px;
+  }
+
+}
+
+#title {
+
+}
+
+@media (max-width: 912px) {
+
+  #title {
+    margin-top: 150px;
+  }
+
+}
+
+@media (max-width: 342px) {
+
+  #title {
+    margin-top: 250px;
+  }
+
+}
+
 p, div, li {
   font-family: 'Montserrat', sans-serif;
   font-size: 19px;
@@ -49,16 +145,4 @@ section:nth-child(2n) {
 #get-in-touch-link:hover {
   color: #0068A3;
   background-color: #80ACD1;
-}
-
-@media (max-width: 1440px) {
-
-  background-color: green;
-
-}
-
-@media (max-width: 1440px) {
-
-  background-color: lime;
-
 }

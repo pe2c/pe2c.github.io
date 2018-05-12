@@ -55,25 +55,21 @@
 
 (defn title
   []
-  [:div {:style (assoc styles/flex-center
+  [:div#title {:style (assoc styles/flex-center
                   :flex-direction :row)}
    [:div {:style (merge styles/flex-center
-                        {:flex-direction :row-reverse}
+                        {:flex-direction :row}
                         styles/title-transition)}
+    [:img#title-logo {:alt "Logo of PE2C"
+                      :src "img/logos/pe2c.svg"
+                      :style styles/title-logo}]
     [:div {:style {:display :flex
                    :flex-direction :column
                    :justify-content :flex-end
                    :align-items :flex-end
                    :padding "30px 45px"}}
-     [:h1 {:style {:font-size 28
-                   :background-color :white}}
-      (t :title :title)]
-     [:h1 {:style {:font-size 80
-                   :background-color :white}}
-      (t :title :sub-title)]]
-    [:img {:alt "Logo of PE2C"
-           :src "img/logos/pe2c.svg"
-           :style styles/title-logo}]]])
+     [:h1#title-name (t :title :title)]
+     [:h1#title-motto (t :title :sub-title)]]]])
 
 (defn main-panel
   []

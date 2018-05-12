@@ -12,10 +12,6 @@
 (def logo-green-strong "#9AC446")
 (def dark-strong "#212529")
 
-(def large-screen-width "Wide enough, standard desktop size" (px 1440))
-(def medium-screen-width "For tablets and small desktops" (px 1440))
-(def small-screen-width "For constrained layout, e.g. mobile phones" (px 1440))
-
 (def length-unit
   "Basic length reference. Express stuff in relation to this so you
   don't have complete magic numbers. "
@@ -44,8 +40,7 @@
    :transition-timing-function "ease-in-out"})
 
 (def title-logo
-  {:width 360
-   :background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.31) 60%, rgba(0,0,0,0) 71%)"})
+  {:background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.31) 60%, rgba(0,0,0,0) 71%)"})
 
 (def title-transition
   {:transition-property [:background-color :padding :visibility]
@@ -114,13 +109,58 @@
    :min-height (str "calc(100vh - " section-padding "px - " section-padding "px)") ;; INFO
    })
 
+;; Here media queries are content-oriented, not media-oriented. It
+;; means that breakpoints are defined for each content. Of course, I
+;; also test in responsive mode to make sure it eventually works at
+;; the end.
+
+(def title-responsive-rules
+  (let [breakpoint-title-large (px 1268)
+        breakpoint-title-medium (px 1034)
+        breakpoint-title-small (px 912)
+        breakpoint-title-very-small (px 342)]
+    [[:#title-name {:font-size (px 28)
+                    :background-color :white}
+       (at-media {:max-width breakpoint-title-large}
+         [:& {:font-size (px 25)}])
+       (at-media {:max-width breakpoint-title-medium}
+         [:& {:font-size (px 21)}])]
+     [:#title-motto {:font-size (px 80)
+                     :background-color :white}
+       (at-media {:max-width breakpoint-title-large}
+         [:& {:font-size (px 68)}])
+       (at-media {:max-width breakpoint-title-medium}
+         [:& {:font-size (px 56)}])]
+     [:#title-logo {:height (px 360)
+                    :width (px 360)}
+       (at-media {:max-width breakpoint-title-large}
+         [:& {:height (px 250)
+              :width (px 250)}])
+       (at-media {:max-width breakpoint-title-small}
+         [:& {:width "50%"
+              :height "50%"
+              :padding-top (px 50)}])
+       (at-media {:max-width breakpoint-title-very-small}
+         [:& {:width (px 250)
+              :height (px 250)
+              :padding-top (px 50)}])]
+     [:#title {}
+       (at-media {:max-width breakpoint-title-small}
+         [:& {:margin-top (px 150)}])
+       (at-media {:max-width breakpoint-title-very-small}
+         [:& {:margin-top (px 250)}])]]))
+
 (defstyles sheet
   [:a {:text-decoration :none}]
   [:body {:margin 0
           :scroll-behavior :smooth}]
+
   [:h1 :h2 :h3 :h4 {:font-family "'Open Sans', sans-serif"
-                    :color logo-blue-strong}]
+                       :color logo-blue-strong}]
   [:h2 {:font-size (px section-heading-font-size)}]
+
+  title-responsive-rules
+ 
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]
   [:.menu-item:hover {:color :white}]
@@ -130,18 +170,7 @@
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
   [:#get-in-touch-link {:color logo-blue-light}
    [:&:hover {:color logo-blue-strong
-              :background-color logo-blue-light}]]
-
-  ;; Media queries are content-oriented, not device-oriented. It means
-  ;; that I observe the behaviour of my content and make media queries
-  ;; for its breakpoints. Of course, I also test in responsive mode to
-  ;; make sure it eventually works at the end.
-
-  (at-media {:max-width (px large-screen-width)})
-  (at-media {:max-width (px medium-screen-width)}
-            {:background-color :green})
-  (at-media {:max-width (px small-screen-width)}
-            {:background-color :lime}))
+              :background-color logo-blue-light}]])
 
 
 
