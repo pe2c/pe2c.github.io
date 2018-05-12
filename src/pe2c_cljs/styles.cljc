@@ -12,21 +12,26 @@
 (def logo-green-strong "#9AC446")
 (def dark-strong "#212529")
 
+(def flex-center
+  {:display :flex
+   :flex-direction :row ;; explicit default, override it if need be
+   :flex-wrap :wrap
+   :align-items :center
+   :justify-content :center})
+
 (def length-unit
   "Basic length reference. Express stuff in relation to this so you
   don't have complete magic numbers. "
   15)
 
-(def section-collapsed-height
+(def section-collapsed-scroll-y
   (* 3 length-unit))
 
 (def section-collapsed
-  {:background-color dark-strong
-   :height section-collapsed-height})
+  {:background-color dark-strong})
 
 (def section-expanded
-  {:padding-top length-unit
-   :padding-bottom length-unit})
+  {:padding-top length-unit})
 
 (def section-base
   {:transition-property [:background-color :padding :visibility]
@@ -39,20 +44,24 @@
    :right 0
    :transition-timing-function "ease-in-out"})
 
-(def title-logo
-  {:background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.31) 60%, rgba(0,0,0,0) 71%)"})
-
-(def title-transition
-  {:transition-property [:background-color :padding :visibility]
-   :transition-duration "0.4s"
-   :transition-delay "0s"})
-
-(def flex-center
-  {:display :flex
-   :flex-direction :row ;; explicit default, override it if need be
-   :flex-wrap :wrap
-   :align-items :center
-   :justify-content :center})
+(def section-panel-rules
+  (let [breakpoint-medium 704]
+    [[:#sections-panel (merge section-base
+                              flex-center)
+       (at-media {:max-width (px breakpoint-medium)}
+         [:& {:position :static
+              :padding-top 0}])]
+     [:.sections-panel-collapsed {:background-color dark-strong}
+       (at-media {:max-width (px breakpoint-medium)}
+         [:& {}])]
+     [:.sections-panel-expanded {:padding-top (px length-unit)}
+       (at-media {:max-width (px breakpoint-medium)}
+         [:& {:background-color dark-strong}])]
+     [:.menu-item {:padding (px length-unit)}]
+     [:.menu-item-collapsed {:color logo-blue-light}]
+     [:.menu-item-expanded {:color :white}
+       (at-media {:max-width (px breakpoint-medium)}
+         [:& {:color logo-blue-light}])]]))
 
 (def padded-item
   {:flex 1
@@ -82,10 +91,7 @@
 
 (defn member-chip-face
   [displayed?]
-  {:object-fit :contain
-   :width (* 16 length-unit)
-   :height (* 16 length-unit)
-   :margin-bottom length-unit
+  {:margin-bottom length-unit
    :border-width (/ length-unit 2)
    :border-radius "50%"
    :border-style :solid
@@ -122,7 +128,10 @@
         breakpoint-title-medium (px 1034)
         breakpoint-title-small (px 912)
         breakpoint-title-very-small (px 342)]
-    [[:#title-name {:font-size (px 28)
+    [[:#title {}
+      (at-media {:max-width breakpoint-title-small}
+                [:& {:margin-top (px (* 5 length-unit))}])]
+     [:#title-name {:font-size (px 28)
                     :background-color :white}
        (at-media {:max-width breakpoint-title-large}
          [:& {:font-size (px 25)}])
@@ -133,25 +142,21 @@
        (at-media {:max-width breakpoint-title-large}
          [:& {:font-size (px 68)}])
        (at-media {:max-width breakpoint-title-medium}
-         [:& {:font-size (px 56)}])]
+         [:& {:font-size (px 56)}])
+       (at-media {:max-width breakpoint-title-very-small}
+         [:& {:font-size (px 42)}])]
      [:#title-logo {:height (px 360)
-                    :width (px 360)}
+                    :width (px 360)
+                    :background "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.31) 60%, rgba(0,0,0,0) 71%)"}
        (at-media {:max-width breakpoint-title-large}
          [:& {:height (px 250)
               :width (px 250)}])
        (at-media {:max-width breakpoint-title-small}
          [:& {:width "50%"
-              :height "50%"
-              :padding-top (px 50)}])
+              :height "50%"}])
        (at-media {:max-width breakpoint-title-very-small}
          [:& {:width (px 250)
-              :height (px 250)
-              :padding-top (px 50)}])]
-     [:#title {}
-       (at-media {:max-width breakpoint-title-small}
-         [:& {:margin-top (px 150)}])
-       (at-media {:max-width breakpoint-title-very-small}
-         [:& {:margin-top (px 250)}])]]))
+              :height (px 250)}])]]))
 
 (def general-section-rules
   (let [breakpoint-section-medium (px 776)
@@ -169,8 +174,8 @@
 (def offer-rules
   (let [breakpoint-section-very-small (px 392)]
     [:.offer-bullets {:min-width (px (* 25 length-unit))}
-      (at-media {:max-width breakpoint-section-very-small}
-        [:& {:min-width (px 150)}])]))
+     (at-media {:max-width breakpoint-section-very-small}
+               [:& {:min-width (px 150)}])]))
 
 (def added-value-rules
   (let [breakpoint-small (px 388)
@@ -180,14 +185,14 @@
                         :display :flex
                         :flex-direction :column
                         :justify-content :space-evenly}
-       (at-media {:max-width breakpoint-medium}
-         [:& {:width "100%"}])]
+      (at-media {:max-width breakpoint-medium}
+                [:& {:width "100%"}])]
      [:#added-value-img {:object-fit :contain
                          :width (px added-value-list-height)
                          :height (px added-value-list-height)}
-       (at-media {:max-width breakpoint-small}
-         [:& {:width "80%"
-              :height "80%"}])]]))
+      (at-media {:max-width breakpoint-small}
+                [:& {:width "80%"
+                     :height "80%"}])]]))
 
 (def who-we-are-rules
   (let [breakpoint-small (px 392)]
@@ -221,6 +226,7 @@
                        :color logo-blue-strong}]
   [:h2 {:font-size (px section-heading-font-size)}]
 
+  section-panel-rules
   title-rules
   general-section-rules
   offer-rules
@@ -229,7 +235,6 @@
 
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]
-  [:.menu-item:hover {:color :white}]
 
   ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
   [:#get-in-touch-link {:color logo-blue-light}

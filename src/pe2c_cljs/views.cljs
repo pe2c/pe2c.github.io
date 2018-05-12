@@ -29,7 +29,7 @@
 
 (defn collapsible-sections-pred
   [{:scroll/keys [y]}]
-  (let [threshold styles/section-collapsed-height]
+  (let [threshold styles/section-collapsed-scroll-y]
     (if (<= y threshold)
       :sections/expanded
       :sections/collapsed)))
@@ -37,18 +37,16 @@
 (defn- sections-panel
   []
   (let [collapsible-state (re-frame/subscribe [:window/scroll-trigger collapsible-sections-pred])
-        menu-item-color (case @collapsible-state
-                          :sections/collapsed styles/logo-blue-light
-                          :sections/expanded :white)]
-    [:div {:style (merge (case @collapsible-state
-                                             :sections/collapsed styles/section-collapsed
-                                             :sections/expanded styles/section-expanded)
-                         styles/section-base
-                         styles/flex-center)}
+        sections-panel-class (case @collapsible-state
+                                  :sections/collapsed :sections-panel-collapsed
+                                  :sections/expanded :sections-panel-expanded)
+        menu-item-class (case @collapsible-state
+                          :sections/collapsed :menu-item-collapsed
+                          :sections/expanded :menu-item-expanded)]
+    [:div#sections-panel {:class (name sections-panel-class)}
      (map (fn [{:section/keys [panel-title href] :as section}]
             ^{:key section}
-            [:a.menu-item {:style {:color menu-item-color
-                                   :margin 15}
+            [:a.menu-item {:class (name menu-item-class)
                            :href (str "#" href)}
              panel-title])
           sections)]))
@@ -57,17 +55,14 @@
   []
   [:div#title {:style (assoc styles/flex-center
                   :flex-direction :row)}
-   [:div {:style (merge styles/flex-center
-                        {:flex-direction :row}
-                        styles/title-transition)}
+   [:div {:style styles/flex-center}
     [:img#title-logo {:alt "Logo of PE2C"
-                      :src "img/logos/pe2c.svg"
-                      :style styles/title-logo}]
+                      :src "img/logos/pe2c.svg"}]
     [:div {:style {:display :flex
                    :flex-direction :column
                    :justify-content :flex-end
                    :align-items :flex-end
-                   :padding "30px 45px"}}
+                   :padding "0 45px"}}
      [:h1#title-name (t :title :title)]
      [:h1#title-motto (t :title :sub-title)]]]])
 
