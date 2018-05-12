@@ -15,7 +15,12 @@
              :repl false}
   :profiles {:dev {:dependencies [[binaryage/devtools "0.9.10"]]
                    :plugins [[lein-figwheel "0.5.16"]
-                             [lein-pdo "LATEST"]]}}
+                             [lein-pdo "LATEST"]]}
+             :emacs {:repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+                     :dependencies [[binaryage/dirac "LATEST"] ;; only for the preload
+                                    [com.cemerick/piggieback "0.2.2"]
+                                    [org.clojure/tools.nrepl "0.2.13"]
+                                    [figwheel-sidecar "0.5.16"]]}}
   :garden {:builds [{:id "stylesheet"
                      :source-paths ["src"] ;; ugly thing because it doesn't reload otherwise
                      :stylesheet pe2c-cljs.styles/sheet

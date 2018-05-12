@@ -20,24 +20,8 @@ p, div, li {
   font-family: 'Montserrat', sans-serif;
 }
 
-#landing-screen #landing-screen-sub-title {
-  font-size: 80px;
-}
-
-.menu-item {
-  margin: 15px;
-}
-
 .menu-item:hover {
   color: white;
-}
-
-#collapsible-title {
-
-}
-
-div#cover-image {
-
 }
 
 section {

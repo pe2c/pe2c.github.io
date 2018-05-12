@@ -11,7 +11,5 @@
   :toggle-displayed-biography
   (fn [db [_ member]]
     (update db
-            :displayed-biography
-            (fn [current]
-              (when-not (= current member)
-                member)))))
+      :displayed-biography
+      #(when-not (= % member) member))))
