@@ -5,11 +5,13 @@
                  [garden "1.3.5"]
                  [re-frame "0.10.5"]]
   :plugins [[lein-cljsbuild "1.1.7"]
-            [lein-garden "0.3.0"]]
+            [lein-garden "0.3.0"]
+            [lein-shell "0.5.0"]]
   :min-lein-version "2.5.3"
   :source-paths ["src"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                     "resources/public/css/stylesheet.css"
+                                    "docs"
                                     "target"]
   :figwheel {:css-dirs ["resources/public/css"]
              :repl false}
@@ -43,4 +45,9 @@
                            :output-to "resources/public/js/compiled/app.js"
                            :optimizations :advanced
                            :closure-defines {goog.DEBUG false}
-                           :pretty-print false}}]})
+                           :pretty-print false}}]}
+  :aliases {"compile" ["do"
+                       "clean"
+                       ["garden" "once"]
+                       ["cljsbuild" "once" "min"]
+                       ["shell" "cp" "-r" "resources/public" "docs"]]})
