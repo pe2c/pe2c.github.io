@@ -89,6 +89,13 @@
    :background-position :center
    :background-size :cover})
 
+(def choose-us-background-image
+  {:background-image "url(img/choose-us/sky-scrapers.png)"
+   :background-repeat :no-repeat
+   :background-attachment :scroll
+   :background-position :center
+   :background-size :cover})
+
 (defn member-chip-face
   [displayed?]
   {:margin-bottom length-unit
@@ -177,6 +184,12 @@
      (at-media {:max-width breakpoint-section-very-small}
        [:& {:min-width (px 150)}])]))
 
+(def choose-us-rules
+  [[:#reasons {:background-color "#FFFFFF66"
+               :padding (px length-unit)}]
+   [:#reason (assoc padded-item
+               :width 200)]])
+
 (def added-value-rules
   (let [breakpoint-small (px 388)
         breakpoint-medium (px 858)]
@@ -249,6 +262,7 @@
   title-rules
   general-section-rules
   offer-rules
+  choose-us-rules
   added-value-rules
   who-we-are-rules
   get-in-touch-rules

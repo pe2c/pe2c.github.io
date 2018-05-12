@@ -27,11 +27,11 @@
                                 "Pro-active"
                                 "Operational"]}
              :ethos {:catch-line "For our ethos"
-                     :text "Based on service and commitment"}
+                     :text "based on service and commitment"}
              :team {:catch-line "For our team's international"
-                    :text "And multi-cultural field experience"}
+                    :text "and multi-cultural field experience"}
              :network {:catch-line "For our network expanded"
-                       :text "Over 30 years of profesionnal life."}}
+                       :text "over 30 years of profesionnal life."}}
  :added-value {:heading "Our added value"
                :bullets ["Personalized export assistance for your company"
                          "Matching your company’s assets with our international expertise"
