@@ -117,7 +117,7 @@
 ;; Min width test for responsive design: 280px. Max is 2200px (not
 ;; sure it's even useful but it was so easy to check I did it).
 
-(def title-responsive-rules
+(def title-rules
   (let [breakpoint-title-large (px 1268)
         breakpoint-title-medium (px 1034)
         breakpoint-title-small (px 912)
@@ -175,7 +175,7 @@
                        :color logo-blue-strong}]
   [:h2 {:font-size (px section-heading-font-size)}]
 
-  title-responsive-rules
+  title-rules
   general-section-rules
  
   [:p :div :li {:font-family "'Montserrat', sans-serif"
