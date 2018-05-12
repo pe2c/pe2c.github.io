@@ -50,5 +50,6 @@
               :michel-ravet {:name [:span "Michel " [:span {:style {:font-variant :small-caps}} "Ravet"]]}
               :president-associate "Chairman, associate"
               :associate "Associate"
-              :biography-of "Biography of"}
+              :biography-of "Biography of"
+              :click-face "Click on a member to read his biography."}
  :get-in-touch {:heading "Get in touch"}}

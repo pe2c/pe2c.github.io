@@ -189,6 +189,29 @@
          [:& {:width "80%"
               :height "80%"}])]]))
 
+(def who-we-are-rules
+  (let [breakpoint-small (px 392)]
+    [[:.member-chip (assoc flex-center
+                      :margin (px 60)
+                      :text-decoration :none
+                      :flex-direction :column)
+      (at-media {:max-width breakpoint-small}
+                [:& {:margin-left (px 0)
+                     :margin-right (px 0)}])]
+     [:.member-chip-face {:object-fit :contain
+                          :width (px (* 16 length-unit))
+                          :height (px (* 16 length-unit))}
+      (at-media {:max-width breakpoint-small}
+                [:& {:width "50vw"
+                     :height "50vw"}])]
+     [:#member-biography {:position :relative
+                          :top "-20vh"
+                          :left (px 0)
+                          :margin-bottom (px -20)
+                          :height (px 20)
+                          :width (px 20)
+                          :background-color :lime}]]))
+
 (defstyles sheet
   [:a {:text-decoration :none}]
   [:body {:margin 0
@@ -202,6 +225,7 @@
   general-section-rules
   offer-rules
   added-value-rules
+  who-we-are-rules
 
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]

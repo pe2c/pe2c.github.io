@@ -7,15 +7,11 @@
 
 (defn member-chip
   [{:keys [img entry position] :as member}]
-  [:a {:href (when-not (= entry @(re-frame/subscribe [:displayed-biography]))
+  [:a.member-chip {:href (when-not (= entry @(re-frame/subscribe [:displayed-biography]))
                "#member-biography")
-       :style (assoc styles/flex-center
-                :margin 60
-                :text-decoration :none
-                :flex-direction :column)
        :on-click (fn [& _]
                    (re-frame/dispatch [:toggle-displayed-biography entry]))}
-   [:img {:alt ""
+   [:img.member-chip-face {:alt ""
           :src img
           :style (styles/member-chip-face (= entry @(re-frame/subscribe [:displayed-biography])))}]
    [:div {:style {:font-weight :bold
@@ -36,15 +32,13 @@
                ^{:key mm} [:div {:style styles/flex-center}
                            (doall (map #(do ^{:key %} [member-chip %]) mm))]))
         doall)
-
-   [:div#member-biography
-    ;; FIXME Ugly hack, so scrolling to biography isn't hidden by 50-px-high banner
-    ;; FIXME Doesn't work as is in responsive design
-    {:style {:margin-top -150
-             :position :absolute
-             :background-color :lime}}]
-   (when-let [biography-entry @(re-frame/subscribe [:displayed-biography])]
+   (let [biography-entry @(re-frame/subscribe [:displayed-biography])]
      [:div {:style {:text-align :justify}}
-      [:p (str (t :who-we-are :biography-of) " ") (t :who-we-are biography-entry :name)]
-      (doall (map (fn [a] ^{:key a} [:p a])
-                  (t :who-we-are biography-entry :biography)))])])
+      [:div#member-biography ;; ugly hack
+       ]
+      (if biography-entry
+        [:p (str (t :who-we-are :biography-of) " ") (t :who-we-are biography-entry :name)]
+        [:p (t :who-we-are :click-face)])
+      (when biography-entry
+        (doall (map (fn [a] ^{:key a} [:p a])
+                    (t :who-we-are biography-entry :biography))))])])

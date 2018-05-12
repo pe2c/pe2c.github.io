@@ -97,5 +97,6 @@ il intègre le cabinet du maire de Tours pendant 3 ans comme project managing of
               :president-associate "Président
 associé"
               :associate "Associé"
-              :biography-of "Biographie de"}
+              :biography-of "Biographie de"
+              :click-face "Cliquer sur un membre pour lire sa biographie."}
  :get-in-touch {:heading "Nous contacter"}}
