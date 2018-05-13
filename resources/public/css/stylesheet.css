@@ -232,7 +232,7 @@ section {
 
 #reason {
   flex: 1;
-  padding: 15;
+  padding: 15px;
   width: 200;
 }
 
@@ -334,6 +334,12 @@ section {
 
 #get-in-touch-link {
   font-size: 42px;
+  color: #80ACD1;
+}
+
+#get-in-touch-link:hover {
+  color: #0068A3;
+  background-color: #80ACD1;
 }
 
 @media (max-width: 512px) {
@@ -351,13 +357,4 @@ p, div, li {
 
 section:nth-child(2n) {
   background-color: #80ACD118;
-}
-
-#get-in-touch-link {
-  color: #80ACD1;
-}
-
-#get-in-touch-link:hover {
-  color: #0068A3;
-  background-color: #80ACD1;
 }

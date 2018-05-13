@@ -1,7 +1,7 @@
 #+TITLE: pe2c-cljs
 
-This [[https://github.com/Day8/re-frame][re-frame] application is the
-website of PE2C, a young import / export firm.
+This [[https://github.com/Day8/re-frame][re-frame]] application is the website of PE2C, a young export
+consultancy firm.
 
 The site as the latest version of code can be seen at
 https://piotr-yuxuan.github.io/pe2c-cljs. The actual production
@@ -19,7 +19,7 @@ lein garden
 
 Garden watches and recompiles css files as they change. Figwheel will
 automatically push cljs changes to the browser. Wait a bit, then
-browse to [http://localhost:3449](http://localhost:3449).
+browse to [[http://localhost:3449][http://localhost:3449]].
 
 
 * Production Build
@@ -71,7 +71,7 @@ Every files under the same directory: no need for arbitrary clj{,s,c}
 folders as there is no natural separation between them.
 
 Clojurescript namespace ~core~ loads namespace ~views~ and injects
-rendered ~views/main-panel~ into DOM node ~"app"~.
+rendered ~views/main-panel~ into DOM node ~#app~.
 
 Namespace ~views~ defines the list of sections. Each of them consist
 of an id, a name for the section menu and its component. Namespace

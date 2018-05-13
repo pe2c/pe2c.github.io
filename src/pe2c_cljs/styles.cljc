@@ -82,19 +82,22 @@
    :background-position :center
    :background-size :cover})
 
+(def fixed-absolute-background
+  {:background-repeat :no-repeat
+   :background-attachment :fixed})
+
 (def get-in-touch-background-image
-  {:background-color dark-strong
-   :background-image "url(img/map-image.png)"
-   :background-attachment :scroll
-   :background-position :center
-   :background-size :cover})
+  (merge {:background-color dark-strong
+          :background-image "url(img/map-image.png)"
+          :background-size :cover
+          :background-position :center}
+         fixed-absolute-background))
 
 (def choose-us-background-image
-  {:background-image "url(img/choose-us/sky-scrapers.png)"
-   :background-repeat :no-repeat
-   :background-attachment :scroll
-   :background-position :center
-   :background-size :cover})
+  (merge {:background "url(img/choose-us/sky-scrapers.png)"
+          :background-size :cover
+          :background-position :center}
+         fixed-absolute-background))
 
 (defn member-chip-face
   [displayed?]
@@ -187,8 +190,9 @@
 (def choose-us-rules
   [[:#reasons {:background-color "#FFFFFF66"
                :padding (px length-unit)}]
-   [:#reason (assoc padded-item
-               :width 200)]])
+   [:#reason {:flex 1
+              :padding (px length-unit)
+              :width 200}]])
 
 (def added-value-rules
   (let [breakpoint-small (px 388)
@@ -246,7 +250,10 @@
     [[:#get-in-touch {;; this section is rather empty, it's not a problem to reduce its padding.
                       :padding-left 0
                       :padding-right 0}]
-     [:#get-in-touch-link {:font-size (px large-text-font-size)}
+     [:#get-in-touch-link {:font-size (px large-text-font-size)
+                           :color logo-blue-light}
+      [:&:hover {:color logo-blue-strong
+                 :background-color logo-blue-light}]
        (at-media {:max-width breakpoint-medium}
          [:& {:font-size (px text-font-size)}])]]))
 
@@ -271,7 +278,4 @@
   [:p :div :li {:font-family "'Montserrat', sans-serif"
                 :font-size (px text-font-size)}]
 
-  ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}]
-  [:#get-in-touch-link {:color logo-blue-light}
-   [:&:hover {:color logo-blue-strong
-              :background-color logo-blue-light}]])
+  ["section:nth-child(2n)" {:background-color (str logo-blue-light "18")}])
