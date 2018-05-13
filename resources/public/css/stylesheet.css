@@ -295,7 +295,7 @@ section {
   text-decoration: none;
 }
 
-@media (max-width: 392px) {
+@media (max-width: 464px) {
 
   .member-chip {
     margin-left: 0px;

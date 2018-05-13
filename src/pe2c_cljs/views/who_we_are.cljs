@@ -24,7 +24,6 @@
   [:section {:id id}
    [:header {:style styles/flex-center}
     [:h2 (t :who-we-are :heading)]]
-
    (->> db/members
         (partition 2)
         ;; so it's 2 row of 2 members or 4 rows of 1 each but never all members in a row.

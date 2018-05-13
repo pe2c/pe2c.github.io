@@ -213,9 +213,10 @@
                      :height (px 200)}])]]))
 
 (def who-we-are-rules
-  (let [breakpoint-small (px 392)
+  (let [breakpoint-very-small (px 392)
+        breakpoint-small (px 464)
         breakpoint-medium (px 1148)]
-    [(at-media {:min-width breakpoint-small ;; min
+    [(at-media {:min-width breakpoint-very-small ;; min
                 :max-width breakpoint-medium}
        [:#who-we-are {;; this section is rather empty, it's not a
                       ;; problem to reduce its padding.
@@ -231,7 +232,7 @@
      [:.member-chip-face {:object-fit :contain
                           :width (px (* 16 length-unit))
                           :height (px (* 16 length-unit))}
-      (at-media {:max-width breakpoint-small}
+      (at-media {:max-width breakpoint-very-small}
         [:& {:width "50vw"
              :height "50vw"}])]
      [:#member-biography {:position :relative
