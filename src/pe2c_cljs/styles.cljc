@@ -275,14 +275,3 @@
   [:#get-in-touch-link {:color logo-blue-light}
    [:&:hover {:color logo-blue-strong
               :background-color logo-blue-light}]])
-
-
-
-
-
-
-
-
-
-
-

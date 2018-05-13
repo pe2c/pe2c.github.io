@@ -1,0 +1,106 @@
+#+TITLE: pe2c-cljs
+
+This [[https://github.com/Day8/re-frame][re-frame] application is the
+website of PE2C, a young import / export firm.
+
+The site as the latest version of code can be seen at
+https://piotr-yuxuan.github.io/pe2c-cljs. The actual production
+website is at https://www.pe2c.com.
+
+* Development Mode
+
+Run local dev server with
+
+#+BEGIN_SRC shell 
+lein clean
+lein figwheel
+lein garden
+#+END_SRC
+
+Garden watches and recompiles css files as they change. Figwheel will
+automatically push cljs changes to the browser. Wait a bit, then
+browse to [http://localhost:3449](http://localhost:3449).
+
+
+* Production Build
+
+To compile clojurescript to javascript:
+
+#+BEGIN_SRC shell 
+lein compile
+#+END_SRC
+
+
+* Technicalities
+
+** Parallax
+
+I've tried to add parallax effect with code but in can't work by
+design (be it cljs or js). The proper, most efficient way to achieve
+this is to offload this to the browser rendering engine. Hence, you
+must do it in CSS.
+
+Further reading: [[https://keithclark.co.uk/articles/pure-css-parallax-websites/][this]] or [[https://www.okgrow.com/posts/css-only-parallax][that]].
+
+** Localisation
+
+I use ~edn~ resource files. However, as reading a file from a client
+may be unreliable, I prefer to read them from a clojure macro and
+insert the result in ~cljs~ file at compile time.
+
+Features:
+
+- Data are strongly isolated from code logic, and it's obvious for any
+  reader that an ~edn~ file contains data.
+- The translation system is dead simple. Moreover, it allows you to
+  store anything: string, hiccup, vectors, function or even symbols of
+  external things.
+
+** Responsive design
+
+The main idea for responsive design is to use almost only max-width
+media queries. Focus on a section, display only the section you want
+to focus on, and use responsive mode of your browser to handle desin
+breakpoint. If you've limited media queries for specific class or
+items within this section, by design all sections displayed together
+will behave and your site is responsive.
+
+** Code structure
+
+Every files under the same directory: no need for arbitrary clj{,s,c}
+folders as there is no natural separation between them.
+
+Clojurescript namespace ~core~ loads namespace ~views~ and injects
+rendered ~views/main-panel~ into DOM node ~"app"~.
+
+Namespace ~views~ defines the list of sections. Each of them consist
+of an id, a name for the section menu and its component. Namespace
+~views/main-panel~ reads the list of sections and appends them to the
+menu and the body.
+
+The menu section is defined in this namespace: its styles and css
+classes suggest it's heavily styled. You can see the detail of it in
+the namespace ~styles~.
+
+There is no readable text in the views, but translation function ~t~
+takes some arguments and retrieves actual human text in dictionaries
+located in ~resources/locales/~.
+
+They're quite seldom re-frame subscriptions. The
+~:window/scroll-trigger~ is used to trigger when the sections menu
+collapses or expands.
+
+Namespace ~styles~ is responsible for styling. It's arguably the most
+complex namespace in this project, but in my opinion it keeps fairly
+simple anyway: just of bunch of named rules, with limited scope
+related to specific component.
+
+** Lorem ipsum
+
+Simple namespace which could easily become a standalone
+library. Circle through Lorem Ipsum text. Provide words, paragraph in
+a very simple way.
+
+Actually, before extracting it as a library, I should add a feature to
+circle words across different function calls so you don't get always
+the same first words.
