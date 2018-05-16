@@ -1,12 +1,12 @@
 {:menu-item {:offer "Our offer"
              :choose-us "Why choose PE2C?"
              :added-value "Our added value"
-             :who-we-are "Team"
+             :who-we-are "About us"
              :get-in-touch "Contact"}
  :title {:title "Partenariat Entreprises Export – Centre Val-de-Loire"
          :sub-title "Export your Ambition"}
  :offer {:heading "Our offer"
-         :caption "Three lines of activity to increase the export business of the Centre-Val de Loire small and medium sized enterprises."
+         :caption "Three lines of activity to increase the export business of the Centre-Val-de-Loire small and medium sized enterprises."
          :opportunity {:heading "Looking for opportunities"
                        :text "A dual approach:"
                        :bullets ["We identify enterprises having an export potential and propose them to exploit it."
@@ -14,14 +14,14 @@
          :network {:heading "Looking for contacts"
                    :text "We propose to interested CEOs to identify export contacts abroad. After signing a mission contract:"
                    :bullets ["We look for contacts in the target regions and countries."
-                             "We confirm the interest to export the product(s) in these areas"
-                             "We establish the link between the CEO and the identified contacts"]}
+                             "We confirm the interest to export the product(s) in these areas."
+                             "We establish the link between the CEO and the identified contacts."]}
          :follow-up {:heading "Assistance"
                      :text "Further to the previous step and at the CEO’s request:"
-                     :bullets ["We facilitate the export procedures"
-                               "In coordination with institutional actors we facilitate contacts with the necessary advisory bodies"
-                               "We can also organize diverse types of missions in the target regions/countries: exploratory mission participation in trade shows meetings with partners…"]}}
- :choose-us {:heading "Why choose PE2C?"
+                     :bullets ["We facilitate the export procedures,"
+                               "In coordination with institutional actors, we facilitate contacts with the necessary advisory bodies,"
+                               "We can also organize diverse types of missions in the target regions/countries: exploratory mission, participation in trade shows, meetings with partners…"]}}
+ :choose-us {:heading "why choose PE2C?"
              :action {:catch-line "For our approach"
                       :bullets ["Pragmatic"
                                 "Pro-active"
@@ -31,24 +31,33 @@
              :team {:catch-line "For our team's international"
                     :text "and multi-cultural field experience"}
              :network {:catch-line "For our network expanded"
-                       :text "over 30 years of profesionnal life."}}
+                       :text "over 30 years of profesionnal life"}}
  :added-value {:heading "Our added value"
-               :bullets ["Personalized export assistance for your company"
-                         "Matching your company’s assets with our international expertise"
-                         "Fee due only on success basis"
-                         "Complementary action to other existing arrangements"]}
+               :bullets ["Personalized export assistance for your company;"
+                         "Matching your company’s assets with our international expertise;"
+                         "Fee due only on success basis;"
+                         "Complementary action to other existing arrangements."]}
  :who-we-are {:heading "A team at the service of your ambition"
               :geraud-de-boisset {:name [:span "Géraud de " [:span {:style {:font-variant :small-caps}} "Boisset"]]
-                                  :biography ["Graduated from the Military Academy Saint Cyr Géraud de BOISSET accomplished his military career as a fighter helicopter pilot. He occupies alternately posts of operational command trainer to the techniques of the flight of fight as well as posts with functional dominant in General staff."
-                                              "He leaves the army in 1999 and integrates the MICHELIN Group for a course of about twenty years. After a first position in charge of manufacturing in factory he joined in 2003 the sector human resources to hold several functions of director in this speciality on various industrial sites in particular leading operations of increase in activity. In 2011 he joined a subsidiary in the same Group directed towards activities of edition and E-commerce to take over the leadership of human resources there until 2016."
-                                              "Today he occupies a post of voluntary advice in an association which accompanies the officers driving) a retraining of the army towards a career in the private sector."]}
+                                  :biography ["Graduated from the Military Academy Saint Cyr, Géraud de BOISSET accomplished his military career as a  combat helicopter pilot. He alternated operational positions as units commander, trainer in combat flying techniques and staff positions mainly in the General Staff."
+                                              "He leaved the army in 1999 and then joined the MICHELIN Group for the next 20 years. After a first position in  manufactoring activities, he hold several management positions in  the human resources area in various industrial sites. In 2011 he took over the management of human resources of a subsidiary of the same Group, dealing with publishing activities and e-commerce."
+                                              "Today, as a secondary activity, he advises an association supporting the Army officers wishing to resettle in the civilian sector."]}
               :arnaud-ladrange {:name [:span "Arnaud " [:span {:style {:font-variant :small-caps}} "Ladrange"]]
-                                :biography ["Graduated from the Military Academy Saint Cyr Arnaud Ladrange accomplished his operational military career in the Artillery commanding units at all levels from platoon to Regiment in France as well as on overseas operations."
-                                            "After graduating from the Staff College in Paris he directed his career towards International Relations alternating positions abroad and in the Ministry of Defense. He more particularly served as Directing Staff at the UK Joint Services Command and Staff College as Military Advisor at the French Representation to NATO as Deputy Director of the Euro-Atlantic Department in the French MoD and lastly as French Military Representative to the EU."
+                                :biography ["Graduated from the Military Academy Saint Cyr, Arnaud Ladrange accomplished his operational military career in the Artillery, commanding units at all levels from platoon to Regiment, in France as well as on overseas operations."
+                                            "After graduating from the Staff College in Paris, he directed his career towards International Relations, alternating positions abroad and in the Ministry of Defense. He more particularly served as Directing Staff at the UK Joint Services Command and Staff College, as Military Advisor at the French Representation to NATO, as Deputy Director of the Euro-Atlantic Department in the French MoD and, lastly, as French Military Representative to the EU."
                                             "He is a recognized expert in the Anglo-Saxon world and international organizations."]}
-              :pierre-niclot {:name [:span "Pierre " [:span {:style {:font-variant :small-caps}} "Niclot"]]}
-              :michel-ravet {:name [:span "Michel " [:span {:style {:font-variant :small-caps}} "Ravet"]]}
-              :president-associate "Chairman, associate"
+              :pierre-niclot {:name [:span "Pierre " [:span {:style {:font-variant :small-caps}} "Niclot"]]
+                              :biography ["Graduated from the French Air Force Academy, he received his wings successively as fighter pilot and helicopter pilot officer. He hold several senior operational positions, commanding in particular a Search and Rescue helicopter squadron and, some years after an airbase."
+                                          "Graduated from both the Staff College and the IHEDN (French National Defense Institute), he contributed significantly to the upgrading of the French Air Force helicopters equipments.  As a Colonel in a Joint Command, he managed several operational deployements of French troops on overseas theaters, most of them in Africa, in coordination with Allies."
+                                          "As a General Officer, he was appointed Air Force Education and Training Commander and, at the same time, Commander of the Tours garnison."
+                                          "Leaving the Air Force, he joined the Thales group for ten years as Military Advisor mainly in the field of export of Air Traffic Management Systems and Military Air Surveillance Systems."]}
+              :michel-ravet {:name [:span "Michel " [:span {:style {:font-variant :small-caps}} "Ravet"]]
+                             :biography ["Graduated from the Saint-Cyr Military Academy, he spends the first part of his operational career in the Army as a logistician and exercises several commands at all levels of responsibilities. After the Joint Command Staff college, he becomes fully involved in the military international relations. In particular, he served twice  as a Defense Attaché in the Embassies of France in Hungary and Tunisia."
+                                         "In the Joint Staff in Paris he is the head of the office dealing with the French military representation abroad (1850 service men and women deployed in 80 countries)"
+                                         "Also former student of the National Institute for Oriental Languages and Civilizations, he is fluent in English, Spanish and Hungarian and speaks some German and Arabic."
+                                         "He has got a strong culture of several parts of the world especially of Central Europe,  North Africa and Spanish speaking world."
+                                         "After retiring from the Armed Forces, he is recruited as a project managing officer in the Cabinet of the Mayor of Tours  for 3 years. He currently teaches Geopolitics in the Tours Business School."]}
+              :president-associate "Associated president"
               :associate "Associate"
               :biography-of "Biography of"
               :click-face "Click on a member to read his biography."}
