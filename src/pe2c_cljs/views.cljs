@@ -8,7 +8,8 @@
             [pe2c-cljs.views.get-in-touch :as get-in-touch]
             [pe2c-cljs.views.offer :as offer]
             [pe2c-cljs.views.who-we-are :as who-we-are]
-            [re-frame.core :as re-frame]))
+            [re-frame.core :as re-frame]
+            [clojure.string :as str]))
 
 (def sections
   [#:section{:href "offer"
@@ -61,7 +62,8 @@
     [:div {:style {:display :flex
                    :flex-direction :column
                    :justify-content :flex-end
-                   :align-items :flex-end
+                   :align-items :center
+                   :text-align :center
                    :padding "0 45px"}}
      [:h1#title-name (t :title :title)]
      [:h1#title-motto (t :title :sub-title)]]]])

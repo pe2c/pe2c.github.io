@@ -1,7 +1,8 @@
 (ns pe2c-cljs.styles
   ;; cljc is needed. clj for lein plugin compilation, cljs for var references
   (:require [garden.units :refer [px]]
-            [garden.stylesheet :refer [at-media]])
+            [garden.stylesheet :refer [at-media]]
+            [clojure.string :as str])
   #?(:clj
            (:require [garden.def :refer [defstyles]])
      :cljs (:require-macros [garden.def :refer [defstyles]])))
@@ -11,6 +12,7 @@
 (def logo-green-light "#ECF4D8")
 (def logo-green-strong "#9AC446")
 (def dark-strong "#212529")
+(def white "white")
 
 (def flex-center
   {:display :flex
@@ -27,22 +29,19 @@
 (def section-collapsed-scroll-y
   (* 3 length-unit))
 
-(def section-collapsed
-  {:background-color dark-strong})
-
-(def section-expanded
-  {:padding-top length-unit})
+(def transition-style
+  {:transition-duration "0.4s"
+   :transition-delay "0s"
+   :transition-timing-function "ease-in-out"})
 
 (def section-base
-  {:transition-property [:background-color :padding :visibility]
-   :transition-duration "0.4s"
-   :transition-delay "0s"
-   :position :fixed
-   :z-index 1
-   :width "100%"
-   :top 0
-   :right 0
-   :transition-timing-function "ease-in-out"})
+  (merge {:transition-property [:background-color :padding :visibility]
+          :position :fixed
+          :z-index 1
+          :width "100%"
+          :top 0
+          :right 0}
+         transition-style))
 
 (def section-panel-rules
   (let [breakpoint-medium 848]
@@ -57,9 +56,12 @@
      [:.sections-panel-expanded {:padding-top (px length-unit)}
        (at-media {:max-width (px breakpoint-medium)}
          [:& {:background-color dark-strong}])]
-     [:.menu-item {:padding (px length-unit)}]
+     [:.menu-item (merge {:padding (px length-unit)
+                          :transition-property [:color]}
+                         transition-style)]
      [:.menu-item-collapsed {:color logo-blue-light}]
-     [:.menu-item-expanded {:color :white}
+     [:.menu-item-expanded {:color white}
+      [:&:hover {:color logo-blue-light}]
        (at-media {:max-width (px breakpoint-medium)}
          [:& {:color logo-blue-light}])]]))
 
@@ -99,6 +101,12 @@
           :background-position :center}
          fixed-absolute-background))
 
+(def added-value-background-image
+  (merge {:background "url(img/added-value/sunrise-meeting.png)"
+          :background-size :cover
+          :background-position :center}
+         fixed-absolute-background))
+
 (defn member-chip-face
   [displayed?]
   {:margin-bottom length-unit
@@ -107,7 +115,7 @@
    :border-style :solid
    :border-color (if displayed?
                    logo-blue-strong
-                   :white)})
+                   white)})
 
 (def section-heading-font-size 42)
 (def large-text-font-size 42)
@@ -133,6 +141,18 @@
 ;; Min width test for responsive design: 280px. Max is 2200px (not
 ;; sure it's even useful but it was so easy to check I did it).
 
+(defn dummy-text-shadow-strength
+  [{:keys [strength color-str radius-em-start radius-em-step]}]
+  (assert (int? strength))
+  (assert (string? color-str))
+  (assert (number? radius-em-start))
+  (assert (number? radius-em-step))
+  (->> (map (fn [->shadow radius] (->shadow radius))
+            (repeat (fn ->shadow [radius] (str/join " " [0 0 (str radius "em") color-str])))
+            (iterate #(+ % radius-em-step) radius-em-start))
+       (take strength)
+       (str/join ", ")))
+
 (def title-rules
   (let [breakpoint-title-large (px 1268)
         breakpoint-title-medium (px 1034)
@@ -142,13 +162,19 @@
       (at-media {:max-width breakpoint-title-small}
                 [:& {:margin-top (px (* 5 length-unit))}])]
      [:#title-name {:font-size (px 28)
-                    :background-color :white}
+                    :text-shadow (dummy-text-shadow-strength {:strength 12
+                                                              :color-str white
+                                                              :radius-em-start 0.5
+                                                              :radius-em-step 0.1})}
        (at-media {:max-width breakpoint-title-large}
          [:& {:font-size (px 25)}])
        (at-media {:max-width breakpoint-title-medium}
          [:& {:font-size (px 21)}])]
      [:#title-motto {:font-size (px 80)
-                     :background-color :white}
+                     :text-shadow (dummy-text-shadow-strength {:strength 16
+                                                               :color-str white
+                                                               :radius-em-start 0.1
+                                                               :radius-em-step 0.1})}
        (at-media {:max-width breakpoint-title-large}
          [:& {:font-size (px 68)}])
        (at-media {:max-width breakpoint-title-medium}
@@ -191,30 +217,24 @@
   [[:#reasons {:background-color "#FFFFFF66"
                :padding (px length-unit)}]
    [:#reason {:flex 1
+              :align-self :flex-start
               :padding (px length-unit)
               :width 200}]])
 
 (def added-value-rules
-  (let [breakpoint-small (px 388)
-        breakpoint-medium (px 858)]
-    [(at-media {:min-width breakpoint-medium} ;; min
-       [:#added-value {;; this section is rather empty, it's not a
-                       ;; problem to reduce its padding.
-                       :padding-left (px (* 0.5 section-padding))
-                       :padding-right (px (* 0.5 section-padding))}])
-     [:#added-value-ol {:height (px added-value-list-height)
-                        :width "50vw"
+  (let [breakpoint-small (px 388)]
+    [(at-media {:min-width breakpoint-small} ;; min
+               [:#added-value {;; this section is rather empty, it's not a
+                               ;; problem to reduce its padding.
+                               :padding-left (px (* 0.5 section-padding))
+                               :padding-right (px (* 0.5 section-padding))}])
+     [:#added-value-ol {:width "50vw"
                         :display :flex
                         :flex-direction :column
-                        :justify-content :space-evenly}
-      (at-media {:max-width breakpoint-medium}
-                [:& {:width "100%"}])]
-     [:#added-value-img {:object-fit :contain
-                         :width (px added-value-list-height)
-                         :height (px added-value-list-height)}
-      (at-media {:max-width breakpoint-small}
-                [:& {:width (px 200)
-                     :height (px 200)}])]]))
+                        :justify-content :space-evenly}]
+     [:#added-value-li {:padding-top (px length-unit)
+                        :align-self :flex-start
+                        :padding-bottom (px length-unit)}]]))
 
 (def who-we-are-rules
   (let [breakpoint-very-small (px 392)

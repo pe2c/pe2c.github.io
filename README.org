@@ -17,14 +17,14 @@ lein figwheel
 lein garden
 #+END_SRC
 
-Garden watches and recompiles css files as they change. Figwheel will
+Garden watches and recompiles CSS files as they change. Figwheel will
 automatically push cljs changes to the browser. Wait a bit, then
 browse to [[http://localhost:3449][http://localhost:3449]].
 
 
 * Production Build
 
-To compile clojurescript to javascript:
+To compile ClojureScript to Javascript:
 
 #+BEGIN_SRC shell 
 lein compile

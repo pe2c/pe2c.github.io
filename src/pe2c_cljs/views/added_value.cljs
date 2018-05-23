@@ -5,13 +5,12 @@
 
 (defn section
   [id]
-  [:section {:id id}
-   [:header {:style styles/flex-center}
-    [:h2 (t :added-value :heading)]]
-   [:div {:style (assoc styles/flex-center
-                   :flex-direction :row-reverse)}
+  [:section {:id id
+             :style styles/added-value-background-image}
+   [:div {:style {:background-color "#FFFFFFDD"
+                  :padding styles/length-unit}}
+    [:header {:style styles/flex-center}
+     [:h2 (t :added-value :heading)]]
     [:ol#added-value-ol
-     (doall (map (fn [bullet] ^{:key bullet} [:li bullet])
-                 (t :added-value :bullets)))]
-    [:img#added-value-img {:alt ""
-                           :src "img/added-value/added-value.png"}]]])
+     (doall (map (fn [bullet] ^{:key bullet} [:li#added-value-li bullet])
+                 (t :added-value :bullets)))]]])

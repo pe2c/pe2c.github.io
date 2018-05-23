@@ -8,7 +8,7 @@
   [:section {:id id
              :style styles/get-in-touch-background-image}
    [:header {:style styles/flex-center}
-    [:h2 {:style {:color :white}} (t :get-in-touch :heading)]]
+    [:h2 {:style {:color styles/white}} (t :get-in-touch :heading)]]
    [:a#get-in-touch-link {:href "mailto:contact@pe2c.com"}
     "contact@pe2c.com"]])
 

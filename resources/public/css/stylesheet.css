@@ -68,6 +68,10 @@ h2 {
 
 .menu-item {
   padding: 15px;
+  transition-property: color;
+  transition-duration: 0.4s;
+  transition-delay: 0s;
+  transition-timing-function: ease-in-out;
 }
 
 .menu-item-collapsed {
@@ -76,6 +80,10 @@ h2 {
 
 .menu-item-expanded {
   color: white;
+}
+
+.menu-item-expanded:hover {
+  color: #80ACD1;
 }
 
 @media (max-width: 848px) {
@@ -100,7 +108,7 @@ h2 {
 
 #title-name {
   font-size: 28px;
-  background-color: white;
+  text-shadow: 0 0 0.5em white, 0 0 0.6em white, 0 0 0.7em white, 0 0 0.7999999999999999em white, 0 0 0.8999999999999999em white, 0 0 0.9999999999999999em white, 0 0 1.0999999999999999em white, 0 0 1.2em white, 0 0 1.3em white, 0 0 1.4000000000000001em white, 0 0 1.5000000000000002em white, 0 0 1.6000000000000003em white;
 }
 
 @media (max-width: 1268px) {
@@ -121,7 +129,7 @@ h2 {
 
 #title-motto {
   font-size: 80px;
-  background-color: white;
+  text-shadow: 0 0 0.1em white, 0 0 0.2em white, 0 0 0.30000000000000004em white, 0 0 0.4em white, 0 0 0.5em white, 0 0 0.6em white, 0 0 0.7em white, 0 0 0.7999999999999999em white, 0 0 0.8999999999999999em white, 0 0 0.9999999999999999em white, 0 0 1.0999999999999999em white, 0 0 1.2em white, 0 0 1.3em white, 0 0 1.4000000000000001em white, 0 0 1.5000000000000002em white, 0 0 1.6000000000000003em white;
 }
 
 @media (max-width: 1268px) {
@@ -232,11 +240,12 @@ section {
 
 #reason {
   flex: 1;
+  align-self: flex-start;
   padding: 15px;
   width: 200;
 }
 
-@media (min-width: 858px) {
+@media (min-width: 388px) {
 
   #added-value {
     padding-left: 45.0px;
@@ -246,34 +255,16 @@ section {
 }
 
 #added-value-ol {
-  height: 300px;
   width: 50vw;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-@media (max-width: 858px) {
-
-  #added-value-ol {
-    width: 100%;
-  }
-
-}
-
-#added-value-img {
-  object-fit: contain;
-  width: 300px;
-  height: 300px;
-}
-
-@media (max-width: 388px) {
-
-  #added-value-img {
-    width: 200px;
-    height: 200px;
-  }
-
+#added-value-li {
+  padding-top: 15px;
+  align-self: flex-start;
+  padding-bottom: 15px;
 }
 
 @media (min-width: 392px) and (max-width: 1148px) {
