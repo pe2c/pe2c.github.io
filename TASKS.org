@@ -20,24 +20,35 @@ only works in Firefox
 Resolution: Chrome doesn't enable it by default.
 *** DONE BUG sections don't collapse
 only works in Firefox
-** TODO Typography and language check
+** DONE Typography and language check
+** TODO Two-step asset loading
+First, load and display low-cost, low-weight assets. Then, once the
+page has been loaded, replace them with more beautiful assets. Just
+provide an ordered list of assets, don't loose time to guess this
+order.
+** TODO Search-engine optimisation
+- https://sitechecker.pro/seo-report/http://pe2c.com well, caution, it
+  looks like it only accepts one free check per URL. So I should take
+  gh.io page there and carefully note the advices.
+** TODO Google analytics
+Setup GA with pe2c google account
 * TODO Localisation
 ** DONE JS client mechanism
 And it uses compile-time code.
 ** DONE Reference mechanism
-** DONE French version
+** TODO French version
 ** TODO English version
 They will do that.
 ** TODO HTML tag with correct language
 * TODO Sections
-** TODO Home screen
+** DONE Home screen
 *** Parallax
 - Simple, quiet effect to show some muscles and give the website some
   professional touch.
 - [[https://keithclark.co.uk/articles/pure-css-parallax-websites/][Single reasonnable way]]
-*** TODO Hover colours
+*** DONE Hover colours
 ** DONE Nos services
-** TODO Choisir PE2C
+** DONE Choisir PE2C
 Add min width and padding for some media
 ** DONE Notre valeur ajoutée
 ** DONE Qui sommes-nous ?
