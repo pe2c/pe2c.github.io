@@ -58,7 +58,7 @@
                   :flex-direction :row)}
    [:div {:style styles/flex-center}
     [:img#title-logo {:alt "Logo of PE2C"
-                      :src "img/logos/pe2c.svg"}]
+                      :src "img/logos/pe2c.png"}]
     [:div {:style {:display :flex
                    :flex-direction :column
                    :justify-content :flex-end

@@ -36,7 +36,7 @@
       [:div#member-biography ;; ugly hack
        ]
       (if biography-entry
-        [:p (str (t :who-we-are :biography-of) " ") (t :who-we-are biography-entry :name)]
+        [:p (t :who-we-are biography-entry :name)]
         [:p (t :who-we-are :click-face)])
       (when biography-entry
         (doall (map (fn [a] ^{:key a} [:p a])
