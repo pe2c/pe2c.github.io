@@ -9,7 +9,9 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
   color: #0068A3;
+  font-variant: small-caps;
 }
 
 h2 {
@@ -240,7 +242,7 @@ section {
 
 #reason {
   flex: 1;
-  align-self: flex-start;
+  text-align: center;
   padding: 15px;
   width: 200;
 }

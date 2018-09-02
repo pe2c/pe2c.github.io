@@ -217,7 +217,7 @@
   [[:#reasons {:background-color "#FFFFFF66"
                :padding (px length-unit)}]
    [:#reason {:flex 1
-              :align-self :flex-start
+              :text-align :center
               :padding (px length-unit)
               :width 200}]])
 
@@ -283,7 +283,9 @@
           :scroll-behavior :smooth}]
 
   [:h1 :h2 :h3 :h4 {:font-family "'Open Sans', sans-serif"
-                       :color logo-blue-strong}]
+                    :font-weight :bolder
+                    :color logo-blue-strong ;; should change? (cf. email)
+                    :font-variant :small-caps}]
   [:h2 {:font-size (px section-heading-font-size)}]
 
   section-panel-rules

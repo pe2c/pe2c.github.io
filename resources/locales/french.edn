@@ -1,9 +1,9 @@
 {:menu-item {:offer "Nos services"
-             :choose-us "Choisir PE2C"
+             :choose-us "Choisir PE²C"
              :added-value "Notre valeur ajoutée"
              :who-we-are "Qui sommes-nous ?"
              :get-in-touch "Contact"}
- :title {:title "Partenariat Entreprises Export – Centre Val-de-Loire"
+ :title {:title "Partenariat Entreprises Export – Centre Val de Loire"
          :sub-title "Exporter l'ambition"}
  :offer {:heading "Nos services"
          :caption "Trois axes d'activité pour intensifier les relations d'export des petites et moyennes entreprises de la région Centre-Val de Loire."
@@ -21,7 +21,7 @@
                      :bullets ["Nous facilitons ses démarches d'exportation,"
                                "Nous facilitons en coordination avec les chambres consulaires et les organismes de développement économiques locaux, la mise en relation avec les conseils requis,"
                                "L'accompagnement peut aller jusqu'à l'organisation de missions dans les pays visés (exploratoire, salon, prise de contact physique etc.)"]}}
- :choose-us {:heading "Pourquoi choisir PE2C?"
+ :choose-us {:heading "Pourquoi choisir PE²C?"
              :action {:catch-line "Pour notre action"
                       :bullets ["Pragmatique", "Pro-active", "Opérationnelle"]}
              :ethos {:catch-line "Pour notre éthique"
@@ -31,10 +31,10 @@
              :network {:catch-line "Pour notre réseau"
                        :text "développé au cours de 30 années d'expertise professionnelle"}}
  :added-value {:heading "Notre valeur ajoutée"
-               :bullets ["Un accompagnement personnalisé de votre entreprise vers l'export ;"
-                         "La rencontre de votre richesse économique et de notre expertise à l'international."
-                         "Une rémunération au succès."
-                         "Une action complémentaire aux dispositifs existants."]}
+               :bullets ["Un accompagnement personnalisé de votre entreprise vers l'export"
+                         "La rencontre de votre richesse économique et de notre expertise à l'international"
+                         "Une rémunération au succès"
+                         "Une action complémentaire aux dispositifs existants"]}
  :who-we-are {:heading "Une équipe au service de votre ambition"
               :geraud-de-boisset {:name [:span "Géraud de " [:span {:style {:font-variant :small-caps}} "Boisset"]]
                                   :biography ["Ancien élève de l’Ecole Spéciale Militaire de Saint-Cyr, il effectue une carrière de 25 années comme pilote d’hélicoptère de combat. Il occupe tour à tour des postes de commandement opérationnel, de formateur aux techniques du vol de combat ainsi que des emplois à dominante fonctionnelle en Etat-Major."

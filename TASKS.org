@@ -55,3 +55,4 @@ Add min width and padding for some media
 ** DONE Contact
 ** TODO Footer
 Legal information, copyright
+* TODO Mail de M. Niclot
